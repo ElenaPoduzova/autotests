@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="autotests.apicore.main" target="1.8" />
+      <module name="autotests.apicore.test" target="1.8" />
+      <module name="autotests.newdesign.main" target="1.8" />
+      <module name="autotests.newdesign.test" target="1.8" />
+      <module name="autotests.sp-newdesign.main" target="1.8" />
+      <module name="autotests.sp-newdesign.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

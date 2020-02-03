@@ -1,0 +1,5 @@
+rootProject.name = 'autotests'
+include 'uicore'
+include 'sp-newdesign-ui'
+include 'sp-frontend'
+
