@@ -11,10 +11,10 @@ import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.PageFactory
 
 class WalletBalanceForm : AbstractContainer() {
-    @FindBy(css="input.input.amount")
+    @FindBy(name="amount")
     private val countField: TextField? = null
 
-    @FindBy(name="sbmt-pay")
+    @FindBy(css=".sp-form__submit button[type='submit']")
     private val btnAccept: WebElement? = null
 
     @FindBy(css=".form-div input")
@@ -39,7 +39,7 @@ class WalletBalanceForm : AbstractContainer() {
     fun enterCountAndAccept(count: Int){
         countField!!.clearAndType(count.toString())
         btnAccept!!.click()
-        Wait.elementPresence(By.cssSelector(".form-div"))
+        Wait.elementPresence(By.cssSelector("section.b-pay"))
         cardRadioBtn!!.click()
     }
 

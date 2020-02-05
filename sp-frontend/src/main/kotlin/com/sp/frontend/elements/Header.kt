@@ -58,7 +58,6 @@ class Header : AbstractContainer() {
 
     fun loginIs(userData: UserData?){
         Wait.elementPresence(By.cssSelector(".sp-header__column--user div button"))
-        Wait.until(ExpectedConditions.textToBePresentInElement(Driver.getElementByCss(".sp-header__column--user div button"), "User"))
     }
 
     fun clickUserProfile() {
