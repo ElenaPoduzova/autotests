@@ -1,7 +1,7 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.containers.DefaultContainerFactory
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.containers.DefaultContainerFactory
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 

@@ -1,6 +1,6 @@
 package com.sp.ui.testdata
 
-import com.tests.core.data.DataClass
+import com.uitestcore.data.DataClass
 
 class CardData : DataClass<CardData> () {
     lateinit var number: String

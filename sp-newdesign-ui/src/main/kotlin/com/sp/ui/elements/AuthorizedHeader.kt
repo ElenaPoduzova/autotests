@@ -1,11 +1,11 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.ExtendedFieldDecorator
-import com.tests.core.driverutils.Wait
-import com.tests.core.elementobjects.Button
-import com.tests.core.elementobjects.TextField
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.ExtendedFieldDecorator
+import com.uitestcore.driverutils.Wait
+import com.uitestcore.elementobjects.Button
+import com.uitestcore.elementobjects.TextField
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -46,7 +46,7 @@ class AuthorizedHeader : AbstractContainer() {
     }
 
     fun openLoginForm() {
-        loginButton!!.click();
+        loginButton!!.click()
     }
 
     fun search(query: String) {
@@ -61,12 +61,12 @@ class AuthorizedHeader : AbstractContainer() {
     fun loginIs(userData: com.sp.ui.testdata.UserData?): Boolean{
         val selector = By.cssSelector(".topbar-item.nav-user .title")
         Wait.elementPresence(selector)
-        return (Driver.get().findElement(selector).text == userData!!.name)
+        return (Driver.findElement(selector).text == userData!!.name)
     }
 
     fun clickUserProfile() {
         user!!.clickMenuButton()
-        user!!.clickMenuElement("Личный кабинет")
+        user.clickMenuElement("Личный кабинет")
         Wait.until(ExpectedConditions.titleIs("Сайт Покупок - Профиль пользователя"))
         //check pop up is hidden
     }

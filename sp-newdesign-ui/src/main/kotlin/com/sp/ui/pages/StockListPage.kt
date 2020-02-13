@@ -1,9 +1,9 @@
 package com.sp.ui.pages
 
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.ExtendedFieldDecorator
-import com.tests.core.driverutils.Wait
-import com.tests.core.pageobjects.BasePage
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.ExtendedFieldDecorator
+import com.uitestcore.driverutils.Wait
+import com.uitestcore.pageobjects.BasePage
 import com.sp.ui.elements.NavTabs
 import com.sp.ui.elements.StockCard
 import org.openqa.selenium.By

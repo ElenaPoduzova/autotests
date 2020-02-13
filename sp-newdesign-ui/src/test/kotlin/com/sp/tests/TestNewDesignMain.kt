@@ -1,6 +1,6 @@
 package com.sp.tests
 
-import com.tests.core.driverutils.Driver
+import com.uitestcore.driverutils.Driver
 import com.sp.ui.elements.*
 import com.sp.ui.pages.*
 import com.sp.ui.testdata.UsersList.USER
@@ -28,20 +28,20 @@ class TestNewDesignMain : TestInitDev() {
         cookiesAlert = CookiesAlert()
         cookiesAlert.dismiss()
         header.openLoginForm()
-        var loginDialog = LoginDialog();
+        val loginDialog = LoginDialog()
         loginDialog.waitToAppear()
-        loginDialog.commitLogin(USER);
+        loginDialog.commitLogin(USER)
         assert.assertTrue(header.loginIs(USER))
         header.refresh()
         headerNavigate.refresh()
         assert.assertEquals(headerNavigate.navList!!.size, 9)
         //assert.assertEquals(header.getWalletCount().toString(), "199220.53")
-        assert.assertAll();
+        assert.assertAll()
     }
 
     //@Test(priority=2)
     fun checkPopularStocks() {
-        var stockList = mainPage.getPopularStocks()
+        val stockList = mainPage.getPopularStocks()
         Assert.assertEquals(stockList.size, 4)
     }
 
@@ -50,7 +50,7 @@ class TestNewDesignMain : TestInitDev() {
         val asert = SoftAssert()
         header.clickUserProfile()
         val profilePage = UserProfilePage()
-        asert.assertAll();
+        asert.assertAll()
     }
 
     //@Test(priority=4)
@@ -63,7 +63,7 @@ class TestNewDesignMain : TestInitDev() {
         walletPage.addMoney(100)
         val paymentCompletedMsg = PaymentCompletedMsg()
         assert.assertEquals(paymentCompletedMsg.getText(), "Заказ успешно оплачен.")
-        assert.assertAll();
+        assert.assertAll()
     }
 
     //@Test(priority = 5)
@@ -72,8 +72,8 @@ class TestNewDesignMain : TestInitDev() {
         mainPage.open()
         header.clickCartBtn()
         val cartPage = CartPage()
-        var ordersList = cartPage.stockList
-        var itemsCount = cartPage.getCartItemsCount()
+        val ordersList = cartPage.stockList
+        val itemsCount = cartPage.getCartItemsCount()
 
         assert.assertEquals(itemsCount, 40)
         assert.assertEquals(ordersList!![0].title.text, "NKU носки")

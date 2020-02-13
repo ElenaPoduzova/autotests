@@ -1,11 +1,11 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.elementobjects.TextField
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.elementobjects.TextField
 import com.sp.ui.testdata.CardData
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.ExtendedFieldDecorator
-import com.tests.core.driverutils.Wait
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.ExtendedFieldDecorator
+import com.uitestcore.driverutils.Wait
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -31,7 +31,7 @@ class MonetaPayForm(formFrame: WebElement) : AbstractContainer() {
     private val payBtn: WebElement? = null
 
     init {
-        Driver.get().switchTo().frame(formFrame);
+        Driver.get().switchTo().frame(formFrame)
         Wait.elementPresence(By.cssSelector("section.b-pay"))
         PageFactory.initElements(ExtendedFieldDecorator(Driver.get()), this)
     }

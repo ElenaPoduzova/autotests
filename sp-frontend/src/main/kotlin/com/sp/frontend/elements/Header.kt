@@ -1,13 +1,12 @@
 package com.sp.frontend.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.ExtendedFieldDecorator
-import com.tests.core.driverutils.Wait
-import com.tests.core.elementobjects.Button
-import com.tests.core.elementobjects.TextField
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.ExtendedFieldDecorator
+import com.uitestcore.driverutils.Wait
+import com.uitestcore.elementobjects.Button
+import com.uitestcore.elementobjects.TextField
 import com.sp.frontend.testdata.UserData
-import com.sp.frontend.ui.ui.elements.CartButton
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -44,7 +43,7 @@ class Header : AbstractContainer() {
     }
 
     fun openLoginForm() {
-        loginButton!!.click();
+        loginButton!!.click()
     }
 
     fun search(query: String) {
@@ -62,7 +61,7 @@ class Header : AbstractContainer() {
 
     fun clickUserProfile() {
         user!!.clickMenuButton()
-        user!!.clickMenuElement("Личный кабинет")
+        user.clickMenuElement("Личный кабинет")
         Wait.until(ExpectedConditions.textToBePresentInElement(Driver.getElementByCss("h2.sp-page__header"), "Личный кабинет"))
         //check pop up is hidden
         Thread.sleep(5000)

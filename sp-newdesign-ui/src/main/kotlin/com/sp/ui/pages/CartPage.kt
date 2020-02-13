@@ -1,9 +1,9 @@
 package com.sp.ui.pages
 
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.Wait
-import com.tests.core.elementobjects.TabElement
-import com.tests.core.pageobjects.BasePage
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.Wait
+import com.uitestcore.elementobjects.TabElement
+import com.uitestcore.pageobjects.BasePage
 import com.sp.ui.elements.CartDiscount
 import com.sp.ui.elements.CartGood
 import com.sp.ui.elements.CartStock
@@ -38,13 +38,13 @@ class CartPage : BasePage() {
     }
 
     fun getCartItemsCount(): Int {
-        return (if (stockList != null) stockList!!.size else 0
-                + if (discountList != null) discountList!!.size else 0
-                + if (goodList != null) goodList!!.size else 0)
+        return (stockList?.size ?: (0
+                        + (discountList?.size ?: (0
+                        + (goodList?.size ?: 0)))))
     }
 
     fun clickTab(tabName: String) {
-        val tabElement = Driver.get().findElement(By.cssSelector(".[data-tab='$tabName']"))
+        val tabElement = Driver.findElement(By.cssSelector(".[data-tab='$tabName']"))
         Wait.until(ExpectedConditions.attributeContains(tabElement, "class", "nav-item nav-link d-inline-block active"))
     }
 

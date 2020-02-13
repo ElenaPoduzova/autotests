@@ -1,6 +1,6 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
+import com.uitestcore.containers.AbstractContainer
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 
@@ -24,7 +24,7 @@ class ListMenu: AbstractContainer() {
         itemsList!![num].click()
     }
 
-    public fun itemCount(): Int {
+    fun itemCount(): Int {
         return  itemsList!!.size
     }
 }

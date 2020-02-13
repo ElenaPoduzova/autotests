@@ -1,7 +1,7 @@
 package com.sp.frontend.uitest.testutils
 
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.Logger
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.Logger
 import io.github.bonigarcia.wdm.WebDriverManager
 import org.testng.ITestResult
 import org.testng.annotations.*
@@ -18,12 +18,13 @@ open class TestInit {
     @Throws(Exception::class)
     fun beforeClass() {
         baseUrl = "https://frontend.dev.sitepokupok.ru"
-        Driver.init("Chrome", baseUrl!!);
+        Driver.init("Chrome", baseUrl!!)
+        Driver.maximize()
     }
 
     @AfterTest
     fun afterClass() {
-        Driver.get()?.quit()
+        Driver.get().quit()
     }
 
     @AfterMethod

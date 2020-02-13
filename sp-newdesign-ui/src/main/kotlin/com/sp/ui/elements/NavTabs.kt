@@ -1,7 +1,7 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.elementobjects.TabElement
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.elementobjects.TabElement
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 
@@ -14,7 +14,7 @@ class NavTabs : AbstractContainer() {
     }
 
     fun clickTab(name: String){
-        for(element in navList!!){
+        for(element in navList){
             if (element.text == name) {
                 element.click()
                 break
@@ -23,7 +23,7 @@ class NavTabs : AbstractContainer() {
     }
 
     fun activeTab(): WebElement? {
-        for(element in navList!!){
+        for(element in navList){
             if (element.getCssValue("class").endsWith("active")) {
                 return element
             }

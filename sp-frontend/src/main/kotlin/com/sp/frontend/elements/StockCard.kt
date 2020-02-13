@@ -1,6 +1,6 @@
 package com.sp.frontend.elements
 
-import com.tests.core.containers.AbstractContainer
+import com.uitestcore.containers.AbstractContainer
 import com.sp.frontend.elements.User
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement

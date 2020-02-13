@@ -1,6 +1,6 @@
 package com.sp.frontend.elements
 
-import com.tests.core.containers.AbstractContainer
+import com.uitestcore.containers.AbstractContainer
 
 class MessageButton : AbstractContainer() {
 }

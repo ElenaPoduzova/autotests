@@ -1,9 +1,9 @@
 package com.sp.frontend.pages
 
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.Wait
-import com.tests.core.elementobjects.TabElement
-import com.tests.core.pageobjects.BasePage
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.Wait
+import com.uitestcore.elementobjects.TabElement
+import com.uitestcore.pageobjects.BasePage
 import com.sp.frontend.elements.CartDiscount
 import com.sp.frontend.elements.CartStock
 import org.openqa.selenium.By
@@ -25,39 +25,14 @@ class CartPage : BasePage() {
     val archiveTab: TabElement? = null
 
     @FindBy(css=".cart-item-cart")
-    val elementsList: List<WebElement>? = null
+    val ordersList: List<CartStock>? = null
 
     fun open() {
         Driver.openPage("/cart")
     }
 
-    fun getCartItemsCount(): Int {
-        return elementsList!!.size
-    }
-
-    fun getOrdersList(): MutableList<CartStock> {
-        var ordersList: MutableList<CartStock> = mutableListOf<CartStock>()
-        for(element in elementsList!!){
-            if (element.text.startsWith("Закупка"))
-            {
-                ordersList.add(CartStock(element))
-            }
-        }
-        return ordersList
-    }
-
-    fun getDiscountList(): MutableList<CartDiscount> {
-        var ordersList: MutableList<CartDiscount> = mutableListOf<CartDiscount>()
-        for(element in elementsList!!){
-            if (element.text.startsWith("Скидка")) {
-                ordersList.add(CartDiscount(element))
-            }
-        }
-        return ordersList
-    }
-
     fun clickTab(tabName: String) {
-        val tabElement = Driver.get().findElement(By.cssSelector(".[data-tab='$tabName']"))
+        val tabElement: WebElement = Driver.get().findElement(By.cssSelector(".[data-tab='$tabName']"))
         Wait.until(ExpectedConditions.attributeContains(tabElement, "class", "nav-item nav-link d-inline-block active"))
     }
 

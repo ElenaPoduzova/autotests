@@ -1,7 +1,7 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.elementobjects.Button
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.elementobjects.Button
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 

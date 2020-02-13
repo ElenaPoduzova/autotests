@@ -1,12 +1,12 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.ExtendedFieldDecorator
-import com.tests.core.driverutils.Wait
-import com.tests.core.elementobjects.Button
-import com.tests.core.elementobjects.CheckBox
-import com.tests.core.elementobjects.TextField
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.ExtendedFieldDecorator
+import com.uitestcore.driverutils.Wait
+import com.uitestcore.elementobjects.Button
+import com.uitestcore.elementobjects.CheckBox
+import com.uitestcore.elementobjects.TextField
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -44,7 +44,7 @@ class AddOrderDialog : AbstractContainer() {
 
     fun approve() {
         if (offertaChekbox!!.isExists) {
-            offertaChekbox!!.select(true)
+            offertaChekbox.select(true)
         }
         submit!!.click()
         Wait.elementAbsence(main!!)

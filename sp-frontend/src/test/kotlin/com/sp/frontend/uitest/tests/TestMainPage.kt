@@ -1,4 +1,4 @@
-package com.sp.frontend.uitests.tests
+package com.sp.frontend.uitest.tests
 
 import com.sp.frontend.elements.CookiesAlert
 import com.sp.frontend.elements.Header
@@ -26,9 +26,9 @@ class TestMainPage : TestInit() {
         cookiesAlert = CookiesAlert()
         cookiesAlert.dismiss()
         header.openLoginForm()
-        var loginDialog = LoginDialog();
+        val loginDialog = LoginDialog()
         loginDialog.waitToAppear()
-        loginDialog.commitLogin(USER);
+        loginDialog.commitLogin(USER)
         header.loginIs(USER)
         Thread.sleep(5000)
         Assert.assertEquals(header.getWalletCount().toString(), "100.0")
@@ -36,7 +36,7 @@ class TestMainPage : TestInit() {
 
     @Test(priority=2)
     fun checkPopularStocks() {
-        var stockList: MutableList<StockCard> = mainPage.getPopularStocks()
+        val stockList: MutableList<StockCard> = mainPage.getPopularStocks()
         Assert.assertEquals(stockList.size, 4)
     }
 
@@ -44,21 +44,20 @@ class TestMainPage : TestInit() {
     fun checkUserProfilePage() {
         val asert = SoftAssert()
         header.clickUserProfile()
-        val profilePage: UserProfilePage =
-                UserProfilePage()
+        val profilePage = UserProfilePage()
         //asert.assertEquals(profilePage.profileMenu!!.itemCount(), 3)
         asert.assertEquals(profilePage.navs!!.size, 3)
-        asert.assertAll();
+        asert.assertAll()
     }
 
     @Test(priority=4)
     fun checkWalletPage() {
         val asert = SoftAssert()
         header.clickWalletBtn()
-        val walletPage: WalletPage =
-                WalletPage()
-        asert.assertEquals(walletPage.getBalance(), 100)
+        val walletPage = WalletPage()
+        val balance = walletPage.getBalance()
         walletPage.addMoney(100)
-        asert.assertAll();
+        asert.assertEquals(walletPage.getBalance(), balance + 100)
+        asert.assertAll()
     }
 }

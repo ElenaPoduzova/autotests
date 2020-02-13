@@ -1,10 +1,10 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.ExtendedFieldDecorator
-import com.tests.core.elementobjects.Button
-import com.tests.core.elementobjects.TabElement
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.ExtendedFieldDecorator
+import com.uitestcore.elementobjects.Button
+import com.uitestcore.elementobjects.TabElement
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.PageFactory

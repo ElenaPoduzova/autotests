@@ -1,7 +1,7 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.elementobjects.TextField
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.elementobjects.TextField
 import org.openqa.selenium.support.FindBy
 
 class UserDataForm : AbstractContainer() {

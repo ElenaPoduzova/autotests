@@ -1,10 +1,10 @@
 package com.sp.ui.pages
 
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.ExtendedFieldDecorator
-import com.tests.core.driverutils.Wait
-import com.tests.core.elementobjects.Button
-import com.tests.core.pageobjects.BasePage
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.ExtendedFieldDecorator
+import com.uitestcore.driverutils.Wait
+import com.uitestcore.elementobjects.Button
+import com.uitestcore.pageobjects.BasePage
 import com.sp.ui.elements.MonetaPayForm
 import com.sp.ui.elements.WalletBalanceForm
 import com.sp.ui.testdata.CardsList.CORRECTCARD
@@ -68,7 +68,7 @@ class StockPage: BasePage() {
         val result = goods!![goodNum].orderFirstAvailable()
         val addOrderDialog = AddOrderDialog()
         addOrderDialog.approve()
-        goods!![goodNum].isOrdered(result)
+        goods[goodNum].isOrdered(result)
     }
 
 }

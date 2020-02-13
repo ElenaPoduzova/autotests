@@ -13,7 +13,6 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/sp-frontend" />
             <option value="$PROJECT_DIR$/sp-newdesign-ui" />
-            <option value="$PROJECT_DIR$/uicore" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />

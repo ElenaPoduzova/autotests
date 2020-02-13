@@ -1,8 +1,8 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.elementobjects.Button
-import com.tests.core.elementobjects.Text
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.elementobjects.Button
+import com.uitestcore.elementobjects.Text
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -24,6 +24,6 @@ class ProgressBar : AbstractContainer() {
     }
 
     fun getValue(): Int {
-        return value!!
+        return value
     }
 }

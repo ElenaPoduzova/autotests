@@ -1,6 +1,6 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
+import com.uitestcore.containers.AbstractContainer
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 
@@ -9,16 +9,16 @@ class TableParams: AbstractContainer() {
 
     override fun init(wrappedElement: WebElement) {
         super.init(wrappedElement)
-        var paramsList = this.findElements(By.cssSelector("table tbody tr"))
+        val paramsList = this.findElements(By.cssSelector("table tbody tr"))
         values = mutableMapOf<String, String>()
-        for (param in paramsList!!)
+        for (param in paramsList)
         {
-            values[param.findElement(By.cssSelector("th")).text] = param.findElement(By.cssSelector("td strong")).text
+            values[(param.findElement(By.cssSelector("th")) as WebElement).text] = (param.findElement(By.cssSelector("td strong")) as WebElement).text
         }
     }
 
     fun getValues(): MutableMap<String, String> {
-        return values!!
+        return values
     }
 
 }

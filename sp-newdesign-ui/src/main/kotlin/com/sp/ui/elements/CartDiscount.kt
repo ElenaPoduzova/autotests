@@ -1,6 +1,6 @@
 package com.sp.ui.elements
 
-import com.tests.core.containers.AbstractContainer
+import com.uitestcore.containers.AbstractContainer
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 
@@ -24,6 +24,6 @@ class CartDiscount(element: WebElement) : AbstractContainer() {
     }
 
     fun getOrders() {
-        var orders = self.findElements(By.cssSelector(".cart-item-content-data .cart-item-data"))
+        val orders = self.findElements(By.cssSelector(".cart-item-content-data .cart-item-data"))
     }
 }

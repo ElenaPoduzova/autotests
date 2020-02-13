@@ -1,4 +1,4 @@
-package com.sp.ui.elements
+package com.sp.frontend.elements
 
 import com.uitestcore.containers.AbstractContainer
 import com.uitestcore.driverutils.Driver
@@ -9,13 +9,13 @@ import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.PageFactory
 
 class CityDropdown : AbstractContainer() {
-    @FindBy(id = "dropdown_cityselect")
+    @FindBy(css = ".popover .show .bs-popover-auto")
     private val main: WebElement? = null
 
-    @FindBy(css = "#dropdown_cityselect .btn.btn-yes")
+    @FindBy(css = ".popover .sp-button")
     private val btnYes: Button? = null
 
-    @FindBy(css = "#dropdown_cityselect .btn.btn-sel")
+    @FindBy(css = ".popover .sp-button:nth-child(2)")
     private val btnSelect: Button? = null
 
     init {

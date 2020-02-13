@@ -1,11 +1,11 @@
 package com.sp.frontend.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.driverutils.Common
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.ExtendedFieldDecorator
-import com.tests.core.elementobjects.Button
-import com.tests.core.elementobjects.TextField
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.driverutils.Common
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.ExtendedFieldDecorator
+import com.uitestcore.elementobjects.Button
+import com.uitestcore.elementobjects.TextField
 import com.sp.frontend.testdata.UserData
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
@@ -47,7 +47,7 @@ class LoginDialog : AbstractContainer() {
 
     fun commitLogin(userData: UserData?){
         loginField!!.clearAndType(userData!!.login)
-        passwordField!!.clearAndType(userData!!.password)
+        passwordField!!.clearAndType(userData.password)
         submitButton!!.click()
     }
 }

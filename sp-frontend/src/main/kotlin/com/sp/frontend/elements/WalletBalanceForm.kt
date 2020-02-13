@@ -1,10 +1,10 @@
 package com.sp.frontend.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.ExtendedFieldDecorator
-import com.tests.core.driverutils.Wait
-import com.tests.core.elementobjects.TextField
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.ExtendedFieldDecorator
+import com.uitestcore.driverutils.Wait
+import com.uitestcore.elementobjects.TextField
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -39,8 +39,6 @@ class WalletBalanceForm : AbstractContainer() {
     fun enterCountAndAccept(count: Int){
         countField!!.clearAndType(count.toString())
         btnAccept!!.click()
-        Wait.elementPresence(By.cssSelector("section.b-pay"))
-        cardRadioBtn!!.click()
     }
 
     fun acceptIsEnabled(): Boolean {

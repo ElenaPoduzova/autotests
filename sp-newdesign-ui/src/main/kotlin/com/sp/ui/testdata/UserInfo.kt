@@ -1,6 +1,6 @@
 package com.sp.ui.testdata
 
-import com.tests.core.data.DataClass
+import com.uitestcore.data.DataClass
 
 class UserInfo : DataClass<UserInfo> () {
     lateinit var login: String

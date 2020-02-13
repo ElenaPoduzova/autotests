@@ -1,17 +1,17 @@
 package com.sp.frontend.elements
 
-import com.tests.core.containers.AbstractContainer
-import com.tests.core.driverutils.Driver
-import com.tests.core.driverutils.ExtendedFieldDecorator
-import com.tests.core.driverutils.Wait
-import com.tests.core.elementobjects.TextField
+import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.ExtendedFieldDecorator
+import com.uitestcore.driverutils.Wait
+import com.uitestcore.elementobjects.TextField
 import com.sp.frontend.testdata.CardData
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.PageFactory
 
-class MonetaPayForm(formFrame: WebElement) : AbstractContainer() {
+class MonetaPayForm : AbstractContainer() {
     @FindBy(id="additionalParameters_cardNumber")
     private val frontNumber: TextField? = null
 
@@ -31,7 +31,8 @@ class MonetaPayForm(formFrame: WebElement) : AbstractContainer() {
     private val payBtn: WebElement? = null
 
     init {
-        Driver.get().switchTo().frame(formFrame);
+        Wait.elementPresence(By.id("purse-refill-frame"))
+        Driver.get().switchTo().frame("purse-refill-frame")
         Wait.elementPresence(By.cssSelector("section.b-pay"))
         PageFactory.initElements(ExtendedFieldDecorator(Driver.get()), this)
     }
