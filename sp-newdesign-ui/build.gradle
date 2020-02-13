@@ -43,6 +43,16 @@ test {
     useTestNG()
 }
 
+task functionalTestWithReport(type: Test) {
+    useTestNG() {
+        // runlist to executed. path is relative to current folder
+        useDefaultListeners = true // Tells TestNG to execute its default reporting structure
+    }
+    systemProperty 'allure.results.directory', '/allure-results'
+    finalizedBy 'allureReport'
+    finalizedBy 'allureServe'
+}
+
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }

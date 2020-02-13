@@ -1,2 +1,2 @@
 call ./gradlew clean
-call ./gradlew :sp-frontend:functionalTest
+call ./gradlew :sp-frontend:functionalTestWithReport
