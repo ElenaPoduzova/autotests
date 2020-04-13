@@ -6,12 +6,12 @@ import com.uitestcore.driverutils.ExtendedFieldDecorator
 import com.uitestcore.driverutils.Wait
 import com.uitestcore.elementobjects.TextField
 import com.sp4.testdata.CardData
+import com.uitestcore.elementobjects.Button
+import com.uitestcore.elementobjects.Select
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import org.openqa.selenium.support.PageFactory
-import org.openqa.selenium.support.ui.Select
-import org.openqa.selenium.support.ui.Sleeper
 
 class MonetaPayForm : AbstractContainer() {
     @FindBy(id="additionalParameters_cardNumber")
@@ -29,8 +29,8 @@ class MonetaPayForm : AbstractContainer() {
     @FindBy(css="form .form_row.form_row_total")
     private val totalCountText: WebElement? = null
 
-    @FindBy(id="payCardButton")
-    private val payBtn: WebElement? = null
+    @FindBy(name="_do_next")
+    private val payBtn: Button? = null
 
     init {
         Wait.elementPresence(By.cssSelector(".purse-frame"))
@@ -44,6 +44,7 @@ class MonetaPayForm : AbstractContainer() {
         cvvNumber!!.clearAndType(card.cvv)
         expireMonth!!.selectByValue(card.expireMonth)
         expireYear!!.selectByValue(card.expireYear)
+        Driver.scrollToElement(Driver.getElementByName("_do_next"))
         payBtn!!.click()
     }
 

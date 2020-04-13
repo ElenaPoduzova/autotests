@@ -17,7 +17,6 @@ import org.testng.asserts.SoftAssert
 class TestMainPage : TestInit() {
     private lateinit var mainPage: MainPage
     private lateinit var header: Header
-    private lateinit var cookiesAlert: CookiesAlert
 
     @Test(priority=1)
     fun loginTest() {
@@ -29,7 +28,7 @@ class TestMainPage : TestInit() {
         loginPage.commitLogin(USER)
         header.loginIs(USER)
         header.refresh()
-        Assert.assertEquals(header.getWalletCount().toString(), "100.0")
+        //Assert.assertEquals(header.getWalletCount().toString(), "100.0")
     }
 
     @Test(priority=2)
