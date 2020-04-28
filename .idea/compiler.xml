@@ -6,6 +6,10 @@
       <module name="autotests.apicore.test" target="1.8" />
       <module name="autotests.newdesign.main" target="1.8" />
       <module name="autotests.newdesign.test" target="1.8" />
+      <module name="autotests.sp-frontend.main" target="1.8" />
+      <module name="autotests.sp-frontend.test" target="1.8" />
+      <module name="autotests.sp-newdesign-ui.main" target="1.8" />
+      <module name="autotests.sp-newdesign-ui.test" target="1.8" />
       <module name="autotests.sp-newdesign.main" target="1.8" />
       <module name="autotests.sp-newdesign.test" target="1.8" />
       <module name="autotests.uicore.main" target="1.8" />

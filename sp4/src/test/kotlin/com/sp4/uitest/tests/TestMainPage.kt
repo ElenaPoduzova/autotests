@@ -37,7 +37,7 @@ class TestMainPage : TestInit() {
         header.clickUserProfile()
         val profilePage = UserProfilePage()
         //asert.assertEquals(profilePage.profileMenu!!.itemCount(), 3)
-        asert.assertEquals(profilePage.navs!!.size, 4)
+        asert.assertEquals(profilePage.navs!!.size, 5)
         asert.assertAll()
     }
 

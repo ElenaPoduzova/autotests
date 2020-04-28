@@ -36,7 +36,6 @@ dependencies {
     implementation group: 'org.jetbrains.kotlin', name: 'kotlin-test-testng', version: '1.3.60'
     implementation group: 'com.applitools', name: 'eyes-common-java3', version: '3.160.0'
     implementation group: 'com.applitools', name: 'eyes-selenium-java3', version: '3.160.0'
-    //compile project(':uitestcore')
     implementation 'com.github.eptests:uitestcore:master-SNAPSHOT'
 }
 
@@ -49,7 +48,7 @@ test {
         // runlist to executed. path is relative to current folder
         useDefaultListeners = true // Tells TestNG to execute its default reporting structure
     }
-    finalizedBy 'allureServe'
+    //finalizedBy 'allureServe'
 }
 
 task generateAllure(type: Exec) {
@@ -63,21 +62,13 @@ task generateAllure(type: Exec) {
     finalizedBy 'allureServe'
 }
 
-task eyesTest(type: Test) {
-    useTestNG() {
-        // runlist to executed. path is relative to current folder
-        useDefaultListeners = true // Tells TestNG to execute its default reporting structure
-    }
-    include 'com/sp/frontend/uitest/eyestests/*'
-}
-
 task functionalTestWithReport(type: Test) {
     useTestNG() {
         // runlist to executed. path is relative to current folder
         useDefaultListeners = true // Tells TestNG to execute its default reporting structure
     }
     systemProperty 'allure.results.directory', '/allure-results'
-    include 'com/sp/frontend/uitest/tests/*'
+    include 'com/sp4/uitest/tests/*'
     finalizedBy 'allureReport'
     finalizedBy 'allureServe'
 }

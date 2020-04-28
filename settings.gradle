@@ -1,4 +1,2 @@
 rootProject.name = 'autotests'
-include 'sp-newdesign-ui'
-include 'sp-frontend'
 include 'sp4'

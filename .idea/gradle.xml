@@ -11,8 +11,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/sp-frontend" />
-            <option value="$PROJECT_DIR$/sp-newdesign-ui" />
             <option value="$PROJECT_DIR$/sp4" />
           </set>
         </option>
