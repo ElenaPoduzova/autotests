@@ -1,16 +1,12 @@
 package com.sp4.uitest.tests
 
-import com.sp4.elements.CookiesAlert
 import com.sp4.elements.Header
-import com.sp4.elements.LoginDialog
-import com.sp4.elements.StockCard
 import com.sp4.pages.LoginPage
 import com.sp4.pages.MainPage
 import com.sp4.pages.UserProfilePage
 import com.sp4.pages.WalletPage
 import com.sp4.testdata.UsersList.USER
 import com.sp4.uitest.testutils.TestInit
-import org.testng.Assert
 import org.testng.annotations.Test
 import org.testng.asserts.SoftAssert
 

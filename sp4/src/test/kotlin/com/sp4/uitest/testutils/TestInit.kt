@@ -17,8 +17,11 @@ open class TestInit {
     @BeforeClass
     @Throws(Exception::class)
     fun beforeClass() {
+        System.out.println("before test initialization")
         baseUrl = "https://dev.sp4.sitepokupok.ru/"
+        System.out.println("set base url")
         Driver.init("Chrome", baseUrl!!)
+        System.out.println("init chrome driver")
         Driver.maximize()
     }
 
