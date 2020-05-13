@@ -1,0 +1,56 @@
+language: java
+jdk:
+- openjdk8
+before_install:
+- sudo apt-get -y install jq
+
+env:
+  global:
+  - HTTP_TESTS="com.epam.jdi:jdi-dark-tests"
+  - BDD_TESTS="com.epam.jdi:jdi-dark-bdd-tests"
+
+stages:
+- prepare
+- compile
+- test
+- reports
+
+jobs:
+  include:
+  - stage: prepare
+    name: Welcome to jdi
+    script:
+    - echo ------------------- START TESTS ----------------------
+    - gradle --version #it is helpful
+
+  - stage: compile
+    name: Compile jdi code
+    script:
+    - gradlew build -x test || travis_terminate 1
+
+  - stage: test
+    name: Run tests - sp4
+    script:
+    - gradlew :sp4:test
+
+  - stage: reports
+    name: Deploy allure reports to netlify
+    script:
+    - npm install -g allure-commandline
+    - npm install -g netlify-cli
+    - allure --version
+    - allure generate -c sp4/build/allure-results -o reports/allure-results-html
+    - aws s3 sync reports/allure-results-html s3://sp4.allure-results/
+after_failure:
+- echo "Build was failed"
+after_success:
+- echo "Build was successful"
+after_script:
+- source reports.sh
+- grubAllureResults
+- du -d 1 -h ./
+- ls -la
+# extra time during long builds
+install:
+- travis_wait
+
