@@ -11,6 +11,7 @@ open class TestInit {
 
     @BeforeTest
     fun beforeTest() {
+        System.out.println("setup chromedriver")
         WebDriverManager.chromedriver().setup()
     }
 
