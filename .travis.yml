@@ -3,6 +3,9 @@ jdk:
 - openjdk8
 before_install:
 - sudo apt-get -y install jq
+before_script:
+  - ls -lah
+  - google-chrome-stable --version
 
 env:
   global:
