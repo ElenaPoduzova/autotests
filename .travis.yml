@@ -6,8 +6,7 @@ before_install:
 
 env:
   global:
-  - HTTP_TESTS="com.epam.jdi:jdi-dark-tests"
-  - BDD_TESTS="com.epam.jdi:jdi-dark-bdd-tests"
+  - TEST="sp4"
 
 stages:
 - prepare
@@ -18,13 +17,13 @@ stages:
 jobs:
   include:
   - stage: prepare
-    name: Welcome to jdi
+    name: Start tests
     script:
     - echo ------------------- START TESTS ----------------------
     - gradle --version #it is helpful
 
   - stage: compile
-    name: Compile jdi code
+    name: Compile tests code
     script:
     - gradlew build -x test || travis_terminate 1
 
@@ -34,7 +33,7 @@ jobs:
     - gradlew :sp4:test
 
   - stage: reports
-    name: Deploy allure reports to netlify
+    name: Deploy allure reports to s3
     script:
     - npm install -g allure-commandline
     - npm install -g netlify-cli
@@ -53,4 +52,4 @@ after_script:
 # extra time during long builds
 install:
 - travis_wait
-
+- gradlew assemble
