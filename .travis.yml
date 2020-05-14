@@ -25,12 +25,12 @@ jobs:
   - stage: compile
     name: Compile tests code
     script:
-    - gradlew build -x test || travis_terminate 1
+    - ./gradlew build -x test || travis_terminate 1
 
   - stage: test
     name: Run tests - sp4
     script:
-    - gradlew :sp4:test
+    - ./gradlew :sp4:test
 
   - stage: reports
     name: Deploy allure reports to s3
@@ -52,4 +52,4 @@ after_script:
 # extra time during long builds
 install:
 - travis_wait
-- gradlew assemble
+- ./gradlew assemble
