@@ -33,7 +33,7 @@ jobs:
   - stage: test
     name: Run tests - sp4
     script:
-    - ./gradlew :sp4:test
+    - ./gradlew :sp4:test --debug
 
   - stage: reports
     name: Deploy allure reports to s3
