@@ -67,14 +67,11 @@ class Header : AbstractContainer() {
         user!!.clickMenuButton()
         user.clickMenuElement("Редактирование профиля")
         Wait.until(ExpectedConditions.textToBePresentInElement(Driver.getElementByCss("h1"), "Редактирование профиля"))
-        //check pop up is hidden
-        Thread.sleep(5000)
     }
 
     fun clickWalletBtn() {
         wallet!!.click()
-        Wait.until(ExpectedConditions.textToBePresentInElement(Driver.getElementByCss("h1"), "Кошёлек"))
-        Thread.sleep(5000)
+        Wait.elementPresence(By.xpath("//h1[text()='Кошелёк']"))
     }
 
     fun getWalletCount(): Float {

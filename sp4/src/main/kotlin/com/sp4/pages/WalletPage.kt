@@ -21,6 +21,9 @@ class WalletPage : BasePage() {
     @FindBy(id="PurseRechargeForm_amount")
     val balanceField: TextField? = null
 
+    @FindBy(id="PurseOutForm_amount")
+    val withdrawField: TextField? = null
+
     @FindBy(css="#PurseRechargeForm button")
     val submit: Button? = null
 

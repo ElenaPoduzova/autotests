@@ -48,6 +48,9 @@ test {
         // runlist to executed. path is relative to current folder
         useDefaultListeners = true // Tells TestNG to execute its default reporting structure
     }
+    if (System.getProperty("params")) {
+        systemProperty "params", System.getProperty("params")
+    }
     //finalizedBy 'allureServe'
 }
 

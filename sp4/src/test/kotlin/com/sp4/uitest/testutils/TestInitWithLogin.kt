@@ -7,23 +7,17 @@ import com.sp4.testdata.UsersList
 import com.uitestcore.driverutils.Driver
 import com.uitestcore.driverutils.Logger
 import io.github.bonigarcia.wdm.WebDriverManager
+import org.openqa.selenium.Dimension
 import org.testng.ITestResult
 import org.testng.annotations.*
 
 open class TestInitWithLogin {
-    var baseUrl: String? = null
-
-    @BeforeTest
-    fun beforeTest() {
-        WebDriverManager.chromedriver().setup()
-    }
-
     @BeforeClass
     @Throws(Exception::class)
     fun beforeClass() {
-        baseUrl = "https://dev.sp4.sitepokupok.ru/"
-        Driver.init("Chrome", baseUrl!!)
-        Driver.maximize()
+        Driver.init()
+        //Driver.maximize()
+        Driver.get().manage().window().size = Dimension(1440, 900);
         val header = Header()
         MainPage().open()
         header.openLoginForm()
@@ -34,17 +28,13 @@ open class TestInitWithLogin {
 
     @AfterTest
     fun afterClass() {
-        //Driver.get().quit()
+        Driver.get().quit()
     }
 
     @AfterMethod
     @Throws(Exception::class)
     fun testCaseFailure(testResult: ITestResult) {
         actionOnFailure(testResult.getStatus(), testResult.getName())
-    }
-
-    fun GetBaseUrl(): String? {
-        return baseUrl
     }
 
     @Throws(java.lang.Exception::class)
