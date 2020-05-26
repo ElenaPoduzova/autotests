@@ -33,7 +33,7 @@ jobs:
   - stage: test
     name: Run tests - sp4
     script:
-    - ./gradlew :sp4:test --tests "com.sp4.uitest.tests.TestMainPage" -Dparams=--headless --debug
+    - ./gradlew :sp4:test --tests "com.sp4.uitest.tests.TestMainPage" -Dparams=--headless
 
   - stage: reports
     name: Deploy allure reports to s3
