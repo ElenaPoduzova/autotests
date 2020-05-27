@@ -1,16 +1,19 @@
 language: java
 jdk:
 - openjdk8
+
+env:
+  global:
+    - TEST="sp4"
+    - PATH=$HOME/.local/bin:$PATH
+
 before_install:
-- sudo apt-get -y install jq
+  - sudo apt-get -y install jq
+  - aws s3 sync s3://travis-build-stages-shared-storage-test/$TRAVIS_BUILD_NUMBER ~/$TRAVIS_BUILD_NUMBER
 before_script:
   - ls -lah
   - google-chrome-stable --version
   - netstat -vatn
-
-env:
-  global:
-  - TEST="sp4"
 
 stages:
 - prepare
