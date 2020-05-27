@@ -2,6 +2,12 @@ language: java
 jdk:
 - openjdk8
 
+addons:
+  snaps:
+    - name: aws-cli
+      confinement: classic # or devmode
+      channel: latest/edge # will be passed to --channel flag
+
 env:
   global:
     - TEST="sp4"
