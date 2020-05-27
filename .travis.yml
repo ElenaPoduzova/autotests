@@ -6,6 +6,7 @@ before_install:
 before_script:
   - ls -lah
   - google-chrome-stable --version
+  - netstat -vatn
 
 env:
   global:
