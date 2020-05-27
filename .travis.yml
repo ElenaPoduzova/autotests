@@ -10,7 +10,6 @@ env:
 before_install:
   - sudo apt-get -y install jq
   - pip install --user awscli
-  - aws s3 sync s3://sp4.allure-results
 before_script:
   - ls -lah
   - google-chrome-stable --version
