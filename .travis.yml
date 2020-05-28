@@ -40,6 +40,8 @@ jobs:
     - npm install -g allure-commandline
     - npm install -g netlify-cli
     - allure --version
+    - aws configure set aws_access_key_id $AWS_ACCESS_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ID
     - allure generate -c sp4/build/allure-results -o reports/allure-results-html
     - aws s3 sync reports/allure-results-html s3://sp4.allure-results/
 after_failure:
