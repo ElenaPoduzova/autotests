@@ -10,6 +10,11 @@ env:
 before_install:
   - sudo apt-get -y install jq
   - pip install --user awscli
+  - aws configure
+    AWS Access Key ID [None]: $ACCESS_KEY
+    AWS Secret Access Key [None]: $SECRET_KEY
+    Default region name [None]: eu-north-1
+    Default output format [None]: json
 before_script:
   - ls -lah
   - google-chrome-stable --version
