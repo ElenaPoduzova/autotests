@@ -86,6 +86,9 @@ function exitWithError() {
 }
 
 function searchForAllureFolder() {
-  sudo find / -type d -name "allure-results" -exec ls -ld {} \;
+    for report in $(ls -d1 autotest/)
+    do
+      echo "Folder: ${report}"
+    done
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`

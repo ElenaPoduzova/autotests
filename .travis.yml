@@ -42,7 +42,7 @@ jobs:
     - allure --version
     - source reports.sh
     - searchForAllureFolder
-    - allure generate -c sp4/build/allure-results -o reports/allure-results-html
+    - allure generate -c autotests/sp4/build/allure-results -o reports/allure-results-html
     - aws s3 sync reports/allure-results-html s3://sp4.allure-results/
 after_failure:
 - echo "Build was failed"
