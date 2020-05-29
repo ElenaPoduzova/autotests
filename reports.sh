@@ -86,22 +86,6 @@ function exitWithError() {
 }
 
 function searchForAllureFolder() {
-    reportDirList="";
-    allureDirExistence=false
-    for folder in $(ls -d1 jdi-dark*/)
-    do
-        allureDirExistence=true
-        allureDir="${report}target/allure-results"
-        if [[ -d "$allureDir" ]] ; then
-            echo "Results found for ${report}"
-            reportDirList="${reportDirList} ${allureDir}"
-        else
-            echo "RESULTS NOT FOUND FOR ${report}"
-        fi
-    done
-    if [[ "x${allureDirExistence}" == "xfalse" ]] ; then
-        exitWithError
-    fi
-    echo ${reportDirList}
+  sudo find / -type d -name "allure-results" -exec ls -ld {} \;
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
