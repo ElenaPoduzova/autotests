@@ -28,11 +28,6 @@ function aboutTransfer() {
     echo "[${TRAVIS_BUILD_NUMBER}] - ${url}" #return
 }
 
-function aboutNetlify() {
-    url="$1"
-    echo "[${TRAVIS_BUILD_NUMBER}] - Allure report on Netlify: ${url}" #return
-}
-
 function checkBranchIsOk() {
     if [[ "x${TRAVIS_PULL_REQUEST}" == "xfalse" ]] ; then
         echo "${BRANCH_ERROR_MESSAGE}"
@@ -43,7 +38,7 @@ function checkBranchIsOk() {
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#########################               PART 1: send allure results into web to collect it later
+#########################               PART 1: send allure results into s3
 function grubAllureResults() {
     echo "grubAllureResults"
     echo "Stage was: ${TRAVIS_BUILD_STAGE_NAME}"
@@ -61,45 +56,6 @@ function grubAllureResults() {
             sendComment "$(aboutTransfer "${uploadedTo}")"
         done
     fi
-}
-
-function uploadFile() {
-    file="$1"
-    url=$(curl --upload-file "${file}" https://transfer.sh/${file})
-    echo ${url} #return
-}
-
-######################         PART 2: Deploy allure results as allure reports to netlify
-function deployAllureResults() {
-    checkBranchIsOk #there is an exit inside
-    downloadAllureResults
-    extractAllureResults
-    generateAllureReports
-    echo "LOG1"
-    url=$(deployToNetlify "allure-report")
-    echo "LOG2"
-    sendComment "$(aboutNetlify ${url})"
-}
-
-function downloadAllureResults() {
-    urlExistence=false
-    for url in $(collectRelevantComments "${TRAVIS_BUILD_NUMBER}")
-    do
-        urlExistence=true
-        echo "Found: ${url}"
-        fileName="$(echo "${url}"| awk -F/ '{print $5}')"
-        curl ${url} --output ${fileName}
-    done
-    if [[ "x${urlExistence}" == "xfalse" ]] ; then
-        exitWithError
-    fi
-}
-
-function extractAllureResults() {
-    for archiveFile in $(ls -1 *.tar.gz)
-    do
-        extractArchive ${archiveFile}
-    done
 }
 
 function generateAllureReports() {
@@ -127,5 +83,25 @@ function exitWithError() {
     echo "${URL_NOT_FOUND_ERROR_MESSAGE}"
     sleep 3
     exit 1
+}
+
+function searchForAllureFolder() {
+    reportDirList="";
+    allureDirExistence=false
+    for folder in $(ls -d1 jdi-dark*/)
+    do
+        allureDirExistence=true
+        allureDir="${report}target/allure-results"
+        if [[ -d "$allureDir" ]] ; then
+            echo "Results found for ${report}"
+            reportDirList="${reportDirList} ${allureDir}"
+        else
+            echo "RESULTS NOT FOUND FOR ${report}"
+        fi
+    done
+    if [[ "x${allureDirExistence}" == "xfalse" ]] ; then
+        exitWithError
+    fi
+    echo ${reportDirList}
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
