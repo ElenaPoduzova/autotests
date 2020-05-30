@@ -21,6 +21,9 @@ stages:
 - test
 - reports
 
+allow_failures:
+  - script: ./gradlew :sp4:test --tests "com.sp4.uitest.tests.TestMainPage" -Dparams=--headless,--verbose --info
+
 jobs:
   include:
   - stage: prepare
@@ -30,7 +33,7 @@ jobs:
     - gradle --version #it is helpful
 
   - stage: test
-    name: Run tests - sp4
+    name: Run Main Page tests - sp4
     script:
     - ./gradlew :sp4:test --tests "com.sp4.uitest.tests.TestMainPage" -Dparams=--headless,--verbose --info
 
