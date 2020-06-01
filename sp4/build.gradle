@@ -54,17 +54,6 @@ test {
     //finalizedBy 'allureServe'
 }
 
-task generateAllure(type: Exec) {
-    println("generateAllure")
-    workingDir "$projectDir/allure/bin"
-    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-        commandLine 'cmd', '/c', 'allure.bat', 'generate', '-c', '../../allure-results'
-    } else {
-        commandLine 'bash', '-c', 'allure', 'generate', '-c',"$projectDir/integration/build/allure-results"
-    }
-    finalizedBy 'allureServe'
-}
-
 task functionalTestWithReport(type: Test) {
     useTestNG() {
         // runlist to executed. path is relative to current folder
