@@ -22,6 +22,8 @@ stages:
 - reports
 
 jobs:
+  allow_failures:
+    - name: Run Main Page tests - sp4
   include:
   - stage: prepare
     name: Start tests
@@ -34,7 +36,6 @@ jobs:
     script:
     - ./gradlew :sp4:test --tests "com.sp4.uitest.tests.TestMainPage" -Dparams=--headless,--verbose --info
 
-  allow_failures:
   - stage: reports
     name: Deploy allure reports to s3
     script:
