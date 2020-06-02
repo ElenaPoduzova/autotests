@@ -86,8 +86,8 @@ function exitWithError() {
 }
 
 function searchForAllureFolder() {
-    echo "ls"
-    for report in $(ls -d1 autotest/)
+    ls
+    for report in $(ls -d1 build/)
     do
       echo "Folder: ${report}"
       for folder in $(ls -d1 ${report}/)
