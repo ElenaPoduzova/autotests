@@ -32,9 +32,14 @@ jobs:
     - gradle --version #it is helpful
 
   - stage: test
-    name: Run Main Page tests - sp4
+    name: Test SP4 - Main Page
     script:
     - ./gradlew :sp4:test --tests "com.sp4.uitest.tests.TestMainPage" -Dparams=--headless,--verbose --info
+
+  - stage: test
+    name: Test SP4 - Create Siock
+    script:
+    - ./gradlew :sp4:test --tests "com.sp4.uitest.tests.TestCreateStock" -Dparams=--headless,--verbose --info
 
   - stage: reports
     name: Deploy allure reports to s3
@@ -44,7 +49,7 @@ jobs:
     - allure --version
     - source reports.sh
     - searchForAllureFolder
-    - allure generate -c autotests/sp4/build/allure-results -o reports/allure-results-html
+    - allure generate -c build/allure-results -o reports/allure-results-html
     - aws s3 sync reports/allure-results-html s3://sp4.allure-results/
 after_failure:
 - echo "Build was failed"
