@@ -30,6 +30,7 @@ object StocksList {
             r.canOrderCustom = true
             r.isOrderRow = false
             r.isColorGuaranty = true
-            r.image = "\\coverImage.jpg"
+            //r.image = "\\coverImage.jpg"
+            r.image = ( if (System.getProperty("os.name").toString() == "Windows") {"\\coverImage.jpg"} else {"/coverImage.jpg"} ).toString()
     }
 }
