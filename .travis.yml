@@ -23,7 +23,8 @@ stages:
 
 jobs:
   allow_failures:
-    - name: Run Main Page tests - sp4
+    - name: Test SP4 - Main Page
+    - name: Test SP4 - Create Stock
   include:
   - stage: prepare
     name: Start tests
@@ -37,7 +38,7 @@ jobs:
     - ./gradlew :sp4:test --tests "com.sp4.uitest.tests.TestMainPage" -Dparams=--headless,--verbose --info
 
   - stage: test
-    name: Test SP4 - Create Siock
+    name: Test SP4 - Create Stock
     script:
     - ./gradlew :sp4:test --tests "com.sp4.uitest.tests.TestCreateStock" -Dparams=--headless,--verbose --info
 
