@@ -87,7 +87,7 @@ function exitWithError() {
 
 function searchForAllureFolder() {
     ls
-    for report in ls
+    for report in *
     do
       echo "Folder: ${report}"
       for folder in $(ls -d1 ${report}/)
