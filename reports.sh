@@ -86,12 +86,13 @@ function exitWithError() {
 }
 
 function searchForAllureFolder() {
+    find . -print
     reportDirList="";
     allureDirExistence=false
     for report in $(ls -d1 build*/)
     do
         allureDirExistence=true
-        allureDir="${report}target/allure-results"
+        allureDir="allure-results"
         if [[ -d "$allureDir" ]] ; then
             echo "Results found for ${report}"
             reportDirList="${reportDirList} ${allureDir}"
