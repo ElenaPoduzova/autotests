@@ -51,7 +51,6 @@ test {
     if (System.getProperty("params")) {
         systemProperty "params", System.getProperty("params")
     }
-    //finalizedBy 'allureServe'
 }
 
 task functionalTestWithReport(type: Test) {
@@ -59,7 +58,7 @@ task functionalTestWithReport(type: Test) {
         // runlist to executed. path is relative to current folder
         useDefaultListeners = true // Tells TestNG to execute its default reporting structure
     }
-    systemProperty 'allure.results.directory', '/allure-results'
+    systemProperty 'allure.results.directory', '/target/allure-results'
     include 'com/sp4/uitest/tests/*'
     finalizedBy 'allureReport'
     finalizedBy 'allureServe'

@@ -86,18 +86,29 @@ function exitWithError() {
 }
 
 function searchForAllureFolder() {
-    find / -name "allure-results"
-    for report in */
+    reportDirList="";
+    allureDirExistence=false
+    for report in $(ls -d1 build*/)
     do
-      echo "Folder: ${report}"
-      for folder in $(ls -d1 ${report}/)
-      do
-        echo "    Folder ${folder} in ${report}"
-              for dir in $(ls -d1 ${folder}/)
-              do
-                  echo "        Folder ${dir} in ${folder}"
-              done
-      done
+        allureDirExistence=true
+        allureDir="${report}target/allure-results"
+        if [[ -d "$allureDir" ]] ; then
+            echo "Results found for ${report}"
+            reportDirList="${reportDirList} ${allureDir}"
+        else
+            echo "RESULTS NOT FOUND FOR ${report}"
+        fi
+    done
+    for report in $(ls -d1 sp4*/)
+    do
+        allureDirExistence=true
+        allureDir="${report}target/allure-results"
+        if [[ -d "$allureDir" ]] ; then
+            echo "Results found for ${report}"
+            reportDirList="${reportDirList} ${allureDir}"
+        else
+            echo "RESULTS NOT FOUND FOR ${report}"
+        fi
     done
 }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
