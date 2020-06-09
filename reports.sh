@@ -86,6 +86,7 @@ function exitWithError() {
 }
 
 function searchForAllureFolder() {
+    cd ../
     find . -print
     reportDirList="";
     allureDirExistence=false
