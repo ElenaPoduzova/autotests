@@ -1,12 +1,12 @@
 package com.sp4.pages
 
-import com.sp4.elements.CategorySelector
+import com.sp4.elements.Sp4Selector
 import com.sp4.elements.InfoDialog
 import com.sp4.elements.TextEditorFrame
 import com.sp4.testdata.StockData
+import com.sp4.testdata.StockStatus
 import com.uitestcore.driverutils.Common
 import com.uitestcore.driverutils.Driver
-import com.uitestcore.driverutils.Wait
 import com.uitestcore.elementobjects.Button
 import com.uitestcore.elementobjects.CheckBox
 import com.uitestcore.elementobjects.Select
@@ -33,8 +33,12 @@ class StockEditPage : BasePage() {
     private val userInfo: TextField? = null
     @FindBy(id="StockOrgForm_minAmount")
     private val minAmount: TextField? = null
-    @FindBy(css=".selectize-input")
+    @FindBy(id="StockOrgForm_minAmount_label")
+    private val minAmountLabel: WebElement? = null
+    @FindBy(css="#StockOrgForm_catIds_label + div .selectize-input")
     private val category: Button? = null
+    @FindBy(css="#StockOrgForm_cityRegionIds + div .selectize-input")
+    private val cities: Button? = null
     @FindBy(id="StockOrgForm_orgPercent")
     private val orgPercent: TextField? = null
     @FindBy(id="StockOrgForm_currencyRate")
@@ -43,6 +47,10 @@ class StockEditPage : BasePage() {
     private val discount: TextField? = null
     @FindBy(id="StockOrgForm_prePayPercent")
     private val prapay: TextField? = null
+    @FindBy(id="StockOrgForm_shipmentType")
+    private val shipmentType: Select? = null
+    @FindBy(id="StockOrgForm_shipmentAmount")
+    private val shipmentAmount: TextField? = null
     @FindBy(id="StockOrgForm_dateStopExpect")
     private val stopDate: TextField? = null
     @FindBy(id="StockOrgForm_datePayExpire")
@@ -57,7 +65,7 @@ class StockEditPage : BasePage() {
     private val accessLevel: Select? = null
     @FindBy(id="StockOrgForm_status")
     private val status: Select? = null
-    @FindBy(id="StockOrgForm_flags-isShipmentOrder")
+    @FindBy(id="StockOrgForm_flags-isOfficeCart")
     private val canOrderToOffice: CheckBox? = null
     @FindBy(id="StockOrgForm_flags-isCustomOrder")
     private val canOrderCustom: CheckBox? = null
@@ -80,6 +88,10 @@ class StockEditPage : BasePage() {
     companion object {
         fun open() {
             Driver.openPage("stock/org/add")
+        }
+
+        fun edit(id: Int) {
+            Driver.openPage("/stock/admin/edit?id=${id}")
         }
     }
 
@@ -126,8 +138,16 @@ class StockEditPage : BasePage() {
 
     private fun fillCategory(categoryType: String, categoryName: String) {
         category!!.click()
-        val selector = CategorySelector(Driver.findElement(By.cssSelector(".selectize-dropdown-content")))
+        val selector = Sp4Selector(Driver.findElement(By.cssSelector(".selectize-dropdown-content")))
         selector.selectCategory(categoryType, categoryName)
+        minAmountLabel!!.click()
+    }
+
+    private fun fillCity(cityName: String) {
+        cities!!.click()
+        val selector = Sp4Selector(Driver.findElement(By.cssSelector(".selectize-dropdown-content")))
+        selector.selectByName(cityName)
+        minAmountLabel!!.click()
     }
 
     fun fillStockDataAndConfirm(data: StockData) {
@@ -139,6 +159,15 @@ class StockEditPage : BasePage() {
                 infoDlg.submit()
             }
         }
+        confirmBtn.click()
+    }
+
+    fun setStatus(statusValue: StockStatus) {
+        status!!.selectByValue(statusValue.text)
+    }
+
+    fun confirm() {
+        confirmBtn!!.scrollTo()
         confirmBtn.click()
     }
 

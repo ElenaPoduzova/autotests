@@ -1,7 +1,7 @@
 package com.sp4.testdata
 
 enum class StockStatus(val text: String) {
-    OPEN("Открыта (идёт сбор заказов)"),
+    OPEN("Oткрыта (идёт набор заказов)"),
     STOP("Стоп (сбор заказов завершён)"),
     CHECKED("Проверено наличие"),
     DELIVERY("Доставка от поставщика"),

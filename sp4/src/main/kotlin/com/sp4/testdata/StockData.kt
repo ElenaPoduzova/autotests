@@ -11,6 +11,7 @@ class StockData : DataClass<StockData> () {
     lateinit var userInfo: String
     lateinit var category: String
     lateinit var categoryName: String
+    lateinit var cityName: String
     lateinit var minAmount: String
     lateinit var orgPercent: String
     lateinit var currencyRate: String
@@ -29,4 +30,5 @@ class StockData : DataClass<StockData> () {
     var isOrderRow: Boolean = false
     var isColorGuaranty: Boolean = false
     lateinit var image: String
+    lateinit var sliza: String
 }

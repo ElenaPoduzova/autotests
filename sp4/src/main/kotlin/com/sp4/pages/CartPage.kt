@@ -4,7 +4,6 @@ import com.uitestcore.driverutils.Driver
 import com.uitestcore.driverutils.Wait
 import com.uitestcore.elementobjects.TabElement
 import com.uitestcore.pageobjects.BasePage
-import com.sp4.elements.CartDiscount
 import com.sp4.elements.CartStock
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
@@ -27,8 +26,11 @@ class CartPage : BasePage() {
     @FindBy(css=".cart-item-cart")
     val ordersList: List<CartStock>? = null
 
-    fun open() {
-        Driver.openPage("/cart")
+    companion object {
+        fun open() {
+            Driver.openPage("/cart")
+            Wait.elementPresence(By.xpath("//h1[text() = 'Мои заказы']"))
+        }
     }
 
     fun clickTab(tabName: String) {
@@ -38,6 +40,14 @@ class CartPage : BasePage() {
 
     fun openTab() {
 
+    }
+
+    fun getStockByTitle(stockTitle: String) : CartStock {
+        return Driver.findDecoratedElement(CartStock::class, By.xpath("//div[@class='sp-cart__title']/a[contains(text(), '${stockTitle}')]/ancestor::div[contains(@class, 'sp-cart__item')]"))
+    }
+
+    fun getStockById(id: String) : CartStock {
+        return Driver.findDecoratedElement(CartStock::class, By.cssSelector("div[data-id='${id}']"))
     }
 
 }

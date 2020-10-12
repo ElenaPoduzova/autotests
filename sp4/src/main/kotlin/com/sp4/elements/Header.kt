@@ -27,7 +27,7 @@ class Header : AbstractContainer() {
     private val message: MessageButton? = null
 
     @FindBy(css = ".sp-header__user-count-order")
-    private val cart: CartButton? = null
+    private val cart: List<CartButton>? = null
 
     @FindBy(css = ".sp-header__user-purse-amount")
     private val wallet: WalletButton? = null
@@ -59,19 +59,21 @@ class Header : AbstractContainer() {
         return user!!.getUserName()
     }
 
-    fun loginIs(userData: UserData?){
-        Wait.elementPresence(By.cssSelector(".sp-header__user-menu"))
+    fun loginIs(userData: UserData) : Boolean {
+        Wait.elementPresence(By.cssSelector("span.sp-user"))
+        var element = Driver.findElement(By.cssSelector("span.sp-user"))
+        return element.text == userData.name
     }
 
     fun clickUserProfile() {
         user!!.clickMenuButton()
-        user.clickMenuElement("Редактирование профиля")
-        Wait.until(ExpectedConditions.textToBePresentInElement(Driver.getElementByCss("h1"), "Редактирование профиля"))
+        user.clickMenuElement("Личный кабинет")
+        Wait.until(ExpectedConditions.textToBePresentInElement(Driver.getElementByCss("h1"), "Профиль пользователя"))
     }
 
     fun clickWalletBtn() {
         wallet!!.click()
-        Wait.elementPresence(By.xpath("//h1[text()='Кошелёк']"))
+        Wait.elementPresence(By.xpath("//h1[text()='Пополнение Кошелька']"))
     }
 
     fun getWalletCount(): Float {

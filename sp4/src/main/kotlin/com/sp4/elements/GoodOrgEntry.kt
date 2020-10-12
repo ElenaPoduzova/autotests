@@ -2,36 +2,31 @@ package com.sp4.elements
 
 import com.sp4.pages.StockGoodsListPage
 import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.driverutils.Common
 import com.uitestcore.driverutils.Wait
 import com.uitestcore.elementobjects.*
 import org.openqa.selenium.support.FindBy
 
-class StockOrgEntry : AbstractContainer() {
+class GoodOrgEntry : AbstractContainer() {
     @FindBy(css="td a")
     private val stockTitle: Link? = null
-    @FindBy(css="td .sub-links a")
-    private val subLinks: List<Link>? = null
-    @FindBy(css=".badge.badge-secondary")
+    @FindBy(css="//td[3]")
+    private val addedInStocksCnt: Text? = null
+    @FindBy(css="td span.badge")
     private val status: Text? = null
-    @FindBy(css=".small")
+    @FindBy(css="td.small")
     private val creationDate: Text? = null
+    @FindBy(css=".text-nowrap .fa.fa-plus-square")
+    private val addToStockBtn: Button? = null
     @FindBy(css=".text-nowrap .fa.fa-pencil-square")
     private val editBtn: Button? = null
-    @FindBy(css=".text-nowrap .fa.fa-minus-square")
+    @FindBy(css=".text-nowrap .fa.fa-trash.action-item-confirm-delete")
     private val deleteBtn: Button? = null
-    @FindBy(css=".sub-links a:nth-child(1)")
-    private val goodsBtn: Button? = null
-    @FindBy(css=".sub-links a:nth-child(2)")
-    private val ordersBtn: Button? = null
-    @FindBy(css=".sub-links a:nth-child(3)")
-    private val paymentsBtn: Button? = null
-    @FindBy(css=".sub-links a:nth-child(4)")
-    private val mailingBtn: Button? = null
 
     companion object {
-        private const val titleSelector = "//table/tbody/tr[1]/td[1]/a[text()='%s']/ancestor::tr"
+        private const val titleSelector = "//a[text() = '%s']/ancestor::tr"
 
-        fun getStockSelectorByTitle(title: String): String {
+        fun getGoodSelectorByTitle(title: String): String {
             return String.format(titleSelector, title)
         }
     }
@@ -49,21 +44,8 @@ class StockOrgEntry : AbstractContainer() {
         }
     }
 
-    fun clickGoods() : StockGoodsListPage {
-        goodsBtn!!.click()
-        return StockGoodsListPage()
-    }
-
-    fun clickOrders() {
-        ordersBtn!!.click()
-    }
-
-    fun clickPayments() {
-        paymentsBtn!!.click()
-    }
-
-    fun clickMailing() {
-        mailingBtn!!.click()
+    fun clickAdd()  {
+        addToStockBtn!!.click()
     }
 
     fun title(): String {
@@ -77,10 +59,8 @@ class StockOrgEntry : AbstractContainer() {
     fun id(): String {
         val href = stockTitle!!.href()
         val pattern1 = ".*stock\\/(\\d*)-.*".toRegex()
-        if (pattern1.containsMatchIn(href)) {
-            var result = pattern1.find(href)?.groups?.get(1)?.value
-            return result.toString()
-        }
+        if (pattern1.containsMatchIn(href))
+            return pattern1.find(href)!!.value
         else
             throw Exception("Wrong url format")
     }

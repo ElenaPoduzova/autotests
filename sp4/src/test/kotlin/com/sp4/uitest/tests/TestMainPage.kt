@@ -22,29 +22,27 @@ class TestMainPage : TestInit() {
         header.openLoginForm()
         val loginPage = LoginPage()
         loginPage.commitLogin(USER)
-        header.loginIs(USER)
-        header.refresh()
-        //Assert.assertEquals(header.getWalletCount().toString(), "100.0")
+        header.loginIs(USER!!)
     }
 
     @Test(priority=2)
     fun checkUserProfilePage() {
-        val asert = SoftAssert()
+        val assert = SoftAssert()
         header.clickUserProfile()
         val profilePage = UserProfilePage()
-        //asert.assertEquals(profilePage.profileMenu!!.itemCount(), 3)
-        asert.assertEquals(profilePage.navs!!.size, 5)
-        asert.assertAll()
+        assert.assertEquals(profilePage.profileData!!.size, 3)
+        assert.assertEquals(profilePage.profileMenu!!.size, 5)
+        assert.assertAll()
     }
 
     @Test(priority=3)
     fun checkWalletPage() {
-        val asert = SoftAssert()
+        val assert = SoftAssert()
         header.clickWalletBtn()
         val walletPage = WalletPage()
         val balance = walletPage.getBalance()
         walletPage.addMoney(100)
-        asert.assertEquals(walletPage.getBalance(), balance + 100)
-        asert.assertAll()
+        assert.assertEquals(walletPage.getBalance(), balance + 100)
+        assert.assertAll()
     }
 }

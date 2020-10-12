@@ -14,11 +14,9 @@ class StockCard(element: WebElement) : AbstractContainer() {
     private var footer: WebElement
 
     init {
-        image =
-                Image(self.findElement(By.cssSelector(".sp-stock__item-image")))
+        image = Image(self.findElement(By.cssSelector(".sp-stock__item-image")))
         title = self.findElement(By.cssSelector(".sp-stock__item-title"))
-        author =
-                User(self.findElement(By.cssSelector(".sp-stock__item-author")))
+        author = User(self.findElement(By.cssSelector(".sp-stock__item-author")))
         description = self.findElement(By.cssSelector(".sp-stock__item-description"))
         footer = self.findElement(By.cssSelector(".sp-stock__item-footer"))
     }

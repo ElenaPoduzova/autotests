@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import java.sql.Driver
 
-class CategorySelector(element: WebElement) : AbstractContainer() {
+class Sp4Selector(element: WebElement) : AbstractContainer() {
 
     init {
         wrappedElement = element
@@ -15,6 +15,11 @@ class CategorySelector(element: WebElement) : AbstractContainer() {
 
     fun selectCategory(categoryType: String, categoryName: String) {
         val categoryGroup = wrappedElement!!.findElement<WebElement>(By.cssSelector("[class='optgroup'][data-group='$categoryType'] div[data-value='$categoryName']"))
+        categoryGroup.click()
+    }
+
+    fun selectByName(name: String) {
+        val categoryGroup = wrappedElement!!.findElement<WebElement>(By.xpath("//*[@class='selectize-dropdown-content']/div[contains(text(), '$name')]"))
         categoryGroup.click()
     }
 }

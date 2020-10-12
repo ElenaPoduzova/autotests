@@ -46,7 +46,6 @@ jobs:
     name: Deploy allure reports to s3
     script:
     - npm install -g allure-commandline
-    - npm install -g netlify-cli
     - allure --version
     - source reports.sh
     - searchForAllureFolder

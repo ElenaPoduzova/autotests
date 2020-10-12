@@ -6,16 +6,17 @@ object StocksList {
     var FullStock: StockData? = StockData()
         .setValues{ r: StockData ->
             r.title = "Автоматически созданная закупка " + LocalDate.now()
-            r.supplierId = "26"
+            r.supplierId = "35"
             r.offertaId = "1"
             r.annotation = "Краткое описание закупки."
             r.description = "Подробное описание закупки с картинками, ссылками и т.д."
             r.userInfo = "Инфо для пользователей - отображается в корзине."
             r.category = "Для женщин"
             r.categoryName = "8"
+            r.cityName = "Все города"
             r.minAmount = "10000"
             r.orgPercent = "5"
-            r.currencyRate = "80"
+            r.currencyRate = "1"
             r.discount = "0"
             r.prepay = "0"
             r.sizes = "40, 42, 44, 46, 48, 50"
@@ -32,5 +33,6 @@ object StocksList {
             r.isColorGuaranty = true
             //r.image = "\\coverImage.jpg"
             r.image = ( if (System.getProperty("os.name").toString() == "Windows") {"\\coverImage.jpg"} else {"/coverImage.jpg"} ).toString()
+            r.sliza = ( if (System.getProperty("os.name").toString() == "Windows") {"\\test.xls"} else {"/test.xls"} ).toString()
     }
 }

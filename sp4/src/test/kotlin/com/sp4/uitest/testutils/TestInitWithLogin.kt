@@ -4,6 +4,7 @@ import com.sp4.elements.Header
 import com.sp4.pages.LoginPage
 import com.sp4.pages.MainPage
 import com.sp4.testdata.UsersList
+import com.uitestcore.driverutils.CookieProfileReader
 import com.uitestcore.driverutils.Driver
 import com.uitestcore.driverutils.Logger
 import io.github.bonigarcia.wdm.WebDriverManager
@@ -16,14 +17,15 @@ open class TestInitWithLogin {
     @Throws(Exception::class)
     fun beforeClass() {
         Driver.init()
-        //Driver.maximize()
         Driver.get().manage().window().size = Dimension(1440, 900);
-        val header = Header()
+        //val header = Header()
         MainPage().open()
-        header.openLoginForm()
-        val loginPage = LoginPage()
+        Driver.setCookies(CookieProfileReader.readProfile("adminprofile"))
+        Driver.reloadPage()
+        //header.openLoginForm()
+        /*val loginPage = LoginPage()
         loginPage.commitLogin(UsersList.ORG)
-        header.loginIs(UsersList.ORG)
+        header.loginIs(UsersList.ORG)*/
     }
 
     @AfterTest
