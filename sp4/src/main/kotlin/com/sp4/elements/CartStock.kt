@@ -15,13 +15,13 @@ class CartStock : AbstractContainer() {
     @FindBy(css=".sp-stock-status__value")
     private val statusBtn: WebElement? = null
     @FindBy(css=".sp-cart__footer div div")
-    private val goodsCount : WebElement? = null
+    private val goodsCount : Text? = null
     @FindBy(css=".cart-params-list div:nth-child(2)")
-    private val prepay: WebElement? = null
+    private val prepay: Text? = null
     @FindBy(css=".sp-cart__footer .sp-cart__org-percent-value.sp-cart__footer-item")
-    private val orgPay: WebElement? = null
+    private val orgPay: Text? = null
     @FindBy(css=".cart-params-list div:nth-child(3)")
-    private val discount: WebElement? = null
+    private val discount: Text? = null
     @FindBy(css=".sp-cart__footer .sp-cart__delivery-key.sp-cart__footer-item")
     private val deliveryOffice: Text? = null
     @FindBy(css=".sp-cart__footer .sp-cart__delivery-alias.sp-cart__footer-item")
@@ -53,9 +53,37 @@ class CartStock : AbstractContainer() {
 
     fun pay(){
         payBtn!!.click()
+        PayDialog.waitToAppear()
+        PayDialog().prepayFromPurse()
     }
 
     fun payByCard()
     {
+    }
+
+    fun getGoodsCount() : Int {
+        val pattern1 = "(\\d*)\\w+".toRegex()
+        if (pattern1.containsMatchIn(goodsCount!!.text())) {
+            var result = pattern1.find(goodsCount.text())?.groups?.get(0)?.value
+            return result!!.toInt()
+        }
+        else
+            throw Exception("Wrong url format")
+    }
+
+    fun getOrgPay() : Int {
+        return orgPay!!.text().toInt()
+    }
+
+    fun getAllPay() : Int {
+        return finalAmount!!.text().toInt()
+    }
+
+    fun getPaid() : Int {
+        return paidAmount!!.text().toInt()
+    }
+
+    fun getNeedToPay() : Int {
+        return toPay!!.text().toInt()
     }
 }

@@ -2,17 +2,15 @@ package com.sp4.uitest.testutils
 
 import com.uitestcore.driverutils.Driver
 import com.uitestcore.driverutils.Logger
-import io.github.bonigarcia.wdm.WebDriverManager
 import org.openqa.selenium.Dimension
 import org.testng.ITestResult
 import org.testng.annotations.*
 
 open class TestInit {
-    var baseUrl: String? = null
 
     @BeforeClass
     @Throws(Exception::class)
-    fun beforeClass() {
+    open fun beforeClass() {
         Driver.init()
         //Driver.maximize()
         Driver.get().manage().window().size = Dimension(1440, 900);
@@ -26,7 +24,7 @@ open class TestInit {
     @AfterMethod
     @Throws(Exception::class)
     fun testCaseFailure(testResult: ITestResult) {
-        actionOnFailure(testResult.getStatus(), testResult.getName())
+        actionOnFailure(testResult.status, testResult.name)
     }
 
     @Throws(java.lang.Exception::class)

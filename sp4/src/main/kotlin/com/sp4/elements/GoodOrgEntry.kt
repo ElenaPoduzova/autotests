@@ -52,7 +52,7 @@ class GoodOrgEntry : AbstractContainer() {
         return stockTitle!!.text()
     }
 
-    fun status() {
+    fun status() : String {
         return status!!.text()
     }
 
@@ -65,7 +65,7 @@ class GoodOrgEntry : AbstractContainer() {
             throw Exception("Wrong url format")
     }
 
-    fun createdOn() {
+    fun createdOn() : String {
         return creationDate!!.text()
     }
 

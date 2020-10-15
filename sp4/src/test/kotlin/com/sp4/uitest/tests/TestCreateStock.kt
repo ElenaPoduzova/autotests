@@ -8,7 +8,7 @@ import com.sp4.uitest.testutils.TestInitWithLogin
 import org.junit.Assert
 import org.testng.annotations.Test
 
-class TestCreateStock : TestInitWithLogin() {
+class TestCreateStock : TestInitWithLogin("adminprofile") {
     private lateinit var stockManagePage: StockManagePage
     private var stockId: Int? = null
 
