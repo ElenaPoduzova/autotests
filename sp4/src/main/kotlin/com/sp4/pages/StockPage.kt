@@ -22,9 +22,9 @@ class StockPage : BasePage() {
     @FindBy(css=".sp-sale-page__stock-info-discount-value")
     private val discount: WebElement? = null
     @FindBy(css=".sp-sale-page__stock-info-goods-count")
-    private val goodsCnt: WebElement? = null
+    private val goodsCnt: Text? = null
     @FindBy(css=".sp-sale-page__stock-info-orders-count")
-    private val ordersCnt: WebElement? = null
+    private val ordersCnt: Text? = null
     @FindBy(css=".sp-sale-page__properties-description")
     private val aboutStock: WebElement? = null
     @FindBy(css=".sp-tabs.nav.nav-tabs li")
@@ -69,5 +69,25 @@ class StockPage : BasePage() {
                 return
             }
         }
+    }
+
+    fun getGoodsCount() : Int {
+        val pattern1 = "(\\d*)\\w+".toRegex()
+        if (pattern1.containsMatchIn(goodsCnt!!.text())) {
+            var result = pattern1.find(goodsCnt.text())?.groups?.get(0)?.value
+            return result!!.toInt()
+        }
+        else
+            throw Exception("Wrong format")
+    }
+
+    fun getOrders() : Int{
+        val pattern1 = "(\\d*)\\w+".toRegex()
+        if (pattern1.containsMatchIn(ordersCnt!!.text())) {
+            var result = pattern1.find(ordersCnt.text())?.groups?.get(0)?.value
+            return result!!.toInt()
+        }
+        else
+            throw Exception("Wrong format")
     }
 }

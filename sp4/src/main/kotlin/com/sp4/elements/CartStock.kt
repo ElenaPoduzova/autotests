@@ -68,7 +68,7 @@ class CartStock : AbstractContainer() {
             return result!!.toInt()
         }
         else
-            throw Exception("Wrong url format")
+            throw Exception("Wrong format")
     }
 
     fun getOrgPay() : Int {

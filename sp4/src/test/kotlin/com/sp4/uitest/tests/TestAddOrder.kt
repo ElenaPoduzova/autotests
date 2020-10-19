@@ -7,10 +7,8 @@ import com.sp4.pages.StockPage
 import com.sp4.testdata.OrderList.TEST
 import com.sp4.testdata.UsersList.USER
 import com.sp4.uitest.testutils.TestInitWithLogin
-import com.uitestcore.driverutils.Wait
 import org.testng.annotations.Test
 import org.testng.asserts.SoftAssert
-import java.sql.Driver
 
 class TestAddOrder : TestInitWithLogin("userprofile") {
     private lateinit var stockPage: StockPage
@@ -22,6 +20,8 @@ class TestAddOrder : TestInitWithLogin("userprofile") {
         StockPage.open(TEST!!.stockId)
         stockPage = StockPage()
         //need lots of asserts like check elements present
+        assert.assertEquals(stockPage.getGoodsCount(), 4)
+        assert.assertEquals(stockPage.getOrders(), 1)
         assert.assertAll()
     }
 
