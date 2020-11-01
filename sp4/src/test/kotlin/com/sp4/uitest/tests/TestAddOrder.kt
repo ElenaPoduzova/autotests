@@ -5,12 +5,13 @@ import com.sp4.elements.Header
 import com.sp4.pages.CartPage
 import com.sp4.pages.StockPage
 import com.sp4.testdata.OrderList.TEST
+import com.sp4.testdata.UsersList
 import com.sp4.testdata.UsersList.USER
 import com.sp4.uitest.testutils.TestInitWithLogin
 import org.testng.annotations.Test
 import org.testng.asserts.SoftAssert
 
-class TestAddOrder : TestInitWithLogin("userprofile") {
+class TestAddOrder : TestInitWithLogin(UsersList.USER) {
     private lateinit var stockPage: StockPage
     private lateinit var stockInCart: CartStock
 

@@ -12,7 +12,7 @@ import org.openqa.selenium.support.FindBy
 
 
 class StockManagePage : BasePage() {
-    @FindBy(css="a:contains('Добавление закупки')")
+    @FindBy(xpath="//a[text() = 'Добавление закупки']")
     private val btnAddStock: Button? = null
     @FindBy(css="table.table.table-custom tbody tr")
     private val supplierId: List<StockOrgEntry>? = null

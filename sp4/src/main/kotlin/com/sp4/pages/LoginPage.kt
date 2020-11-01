@@ -8,6 +8,7 @@ import com.sp4.testdata.CardsList.CORRECTCARD
 import com.sp4.testdata.UserData
 import com.uitestcore.driverutils.Common
 import com.uitestcore.driverutils.ExtendedFieldDecorator
+import com.uitestcore.driverutils.Wait
 import com.uitestcore.elementobjects.Button
 import com.uitestcore.elementobjects.TextField
 import org.openqa.selenium.By
@@ -48,5 +49,6 @@ class LoginPage : BasePage() {
         loginField!!.clearAndType(userData!!.login)
         passwordField!!.clearAndType(userData.password)
         submitButton!!.click()
+        Wait.elementPresence(By.xpath("//span/span[@class='sp-user ' and contains(text(), '${userData!!.login}')]"))
     }
 }

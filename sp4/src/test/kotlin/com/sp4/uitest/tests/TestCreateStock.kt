@@ -4,19 +4,21 @@ import com.sp4.pages.*
 import com.sp4.testdata.StockStatus
 import com.sp4.testdata.StocksList.FullStock
 import com.sp4.testdata.StocksGoodList
+import com.sp4.testdata.UsersList
 import com.sp4.uitest.testutils.TestInitWithLogin
 import org.junit.Assert
 import org.testng.annotations.Test
 
-class TestCreateStock : TestInitWithLogin("adminprofile") {
+class TestCreateStock : TestInitWithLogin(UsersList.ORG) {
     private lateinit var stockManagePage: StockManagePage
     private var stockId: Int? = null
 
     @Test(priority=1)
     fun createStock() {
-        StockEditPage.open()
-        StockEditPage().fillStockDataAndConfirm(FullStock!!)
+        StockManagePage.open()
         stockManagePage = StockManagePage()
+        stockManagePage.clickAddStock()
+        StockEditPage().fillStockDataAndConfirm(FullStock!!)
         Assert.assertTrue(stockManagePage.isStockPresent(FullStock!!.title))
         stockId = stockManagePage.getStockIdByTitle(FullStock!!.title)
         Assert.assertTrue(stockManagePage.isStockPresent(FullStock!!.title))
