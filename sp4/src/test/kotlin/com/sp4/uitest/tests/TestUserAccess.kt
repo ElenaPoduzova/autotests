@@ -11,7 +11,7 @@ import org.testng.asserts.SoftAssert
 class TestUserAccess : TestInit() {
 
     private var userPages = arrayOf("user/view", "cart", "purse", "resell", "boast", "resell/user", "boast/user")
-    private var orgPages = arrayOf("org", "org/admin", "stock/org", "supplier/org", "invoice/org", "purse/org", "parcel/org/view")
+    private var orgPages = arrayOf("org", "stock/org", "supplier/org", "invoice/org", "purse/org", "parcel/org/view")
     private var adminPages = arrayOf("admin", "news/admin", "blog/admin", "boast/admin", "resell/admin", "stock/admin", "stock/admin/ready",
             "discount/admin", "page/admin", "poster/admin", "access/admin/permit", "assistant/admin", "office/admin/operator",
             "supplier/admin", "office/admin", "org/admin/company", "org/admin", "org/admin/medal", "tariff/admin",
@@ -29,7 +29,7 @@ class TestUserAccess : TestInit() {
         userPages.forEach {
             Driver.openPage(it)
             Breadcrumbs.waitForAppear()
-            assert.assertTrue(Driver.get().currentUrl.contains(it), "У пользователя должен быть доступ к пользовательской странице /${it}")
+            assert.assertTrue(Driver.get().currentUrl.contains(it), "У пользователя должен быть доступ к пользовательской странице /${it}, но показана ${Driver.get().currentUrl}")
         }
         orgPages.forEach {
             Driver.openPage(it)
@@ -57,12 +57,12 @@ class TestUserAccess : TestInit() {
         userPages.forEach {
             Driver.openPage(it)
             Breadcrumbs.waitForAppear()
-            assert.assertTrue(Driver.get().currentUrl.contains(it), "У орга должен быть доступ к пользовательской странице /${it}")
+            assert.assertTrue(Driver.get().currentUrl.contains(it), "У орга должен быть доступ к пользовательской странице /${it}, но показана ${Driver.get().currentUrl}")
         }
         orgPages.forEach {
             Driver.openPage(it)
             Breadcrumbs.waitForAppear()
-            assert.assertTrue(Driver.get().currentUrl.contains(it), "У орга должен быть доступ к орговской странице /${it}")
+            assert.assertTrue(Driver.get().currentUrl.contains(it), "У орга должен быть доступ к орговской странице /${it}, но показана ${Driver.get().currentUrl}")
         }
         adminPages.forEach {
             Driver.openPage(it)
