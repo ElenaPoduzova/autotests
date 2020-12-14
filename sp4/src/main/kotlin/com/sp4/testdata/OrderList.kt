@@ -1,15 +1,34 @@
 package com.sp4.testdata
 
 object OrderList {
-    var TEST: OrderData? = OrderData()
+    var BOOTS: OrderData? = OrderData()
         .setValues{ r: OrderData ->
-        r.stockId = "219-avtomaticheski-sozdannaya-zakupka-2020-10-09"
-        r.stockTitle = "Автоматически созданная закупка 2020-10-09"
-        r.dataId = "446"
-        r.goodName = "Женский кардиган"
-        r.size = hashMapOf<String, String>("размер" to "40", "цвет" to "синий")
-        r.sizeRow = "40, синий"
-        r.orgPercent = "5%"
-        r.discount = "1%"
-    }
+            r.goodName = "Кроссовки"
+            r.size = hashMapOf<String, String>("размер" to "37", "цвет" to "белый")
+            r.sizeRow = "37, белый"
+            r.price = "1000"
+        }
+
+    var CARDIGAN: OrderData? = OrderData()
+        .setValues{ r: OrderData ->
+            r.goodName = "Женский кардиган"
+            r.size = hashMapOf<String, String>("размер" to "40", "цвет" to "синий")
+            r.sizeRow = "40, синий"
+            r.price = "500"
+        }
+    var TOP: OrderData? = OrderData()
+        .setValues{ r: OrderData ->
+            r.goodName = "Короткий топ"
+            r.size = hashMapOf<String, String>("размер" to "42", "цвет" to "черный")
+            r.sizeRow = "42, черный"
+            r.price = "100"
+        }
+
+    var SHIRT: OrderData? = OrderData()
+        .setValues{ r: OrderData ->
+            r.goodName = "Рубашка женская белая"
+            r.size = hashMapOf<String, String>("размер" to "40", "цвет" to "черный")
+            r.sizeRow = "40, черный"
+            r.price = "200"
+        }
 }

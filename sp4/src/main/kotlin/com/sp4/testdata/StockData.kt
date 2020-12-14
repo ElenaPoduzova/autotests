@@ -23,6 +23,7 @@ class StockData : DataClass<StockData> () {
     lateinit var shipment: String
     lateinit var shipmentFrom: String
     lateinit var shipmentTo: String
+    lateinit var shipmentType: StockDeliveryType
     lateinit var accessLevel: String
     lateinit var status: StockStatus
     var canOrderToOffice: Boolean = false

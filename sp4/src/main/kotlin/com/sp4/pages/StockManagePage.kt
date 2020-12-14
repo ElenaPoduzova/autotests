@@ -49,6 +49,16 @@ class StockManagePage : BasePage() {
         }
     }
 
+    fun getStockFullIdByTitle(title: String): String {
+        try {
+            var stock = Driver.findDecoratedElement(StockOrgEntry::class, By.xpath(StockOrgEntry.getStockSelectorByTitle(title)))
+            return stock.fullId()
+        }
+        catch (e: Exception) {
+            throw Exception("Stock is not found")
+        }
+    }
+
     fun addGoodToStock(id: Int, data: StockGoodData) {
         Driver.openPage("/stock/org/good?stock=${id}")
         StockGoodsListPage().clickCatalogBtn().clickAddGood()

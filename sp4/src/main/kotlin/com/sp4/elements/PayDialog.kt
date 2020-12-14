@@ -43,7 +43,7 @@ class PayDialog : AbstractContainer() {
     }
 
     fun prepayFromPurse() {
-        pursePay!!.click()
+        pursePrepay!!.click()
         submit()
     }
 

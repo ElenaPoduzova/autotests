@@ -74,6 +74,17 @@ class StockOrgEntry : AbstractContainer() {
         return status!!.text()
     }
 
+    fun fullId(): String {
+        val href = stockTitle!!.href()
+        val pattern1 = ".*stock\\/(\\d.*)".toRegex()
+        if (pattern1.containsMatchIn(href)) {
+            var result = pattern1.find(href)?.groups?.get(1)?.value
+            return result.toString()
+        }
+        else
+            throw Exception("Wrong url format")
+    }
+
     fun id(): String {
         val href = stockTitle!!.href()
         val pattern1 = ".*stock\\/(\\d*)-.*".toRegex()

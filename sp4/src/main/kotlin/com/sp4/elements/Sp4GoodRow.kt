@@ -11,11 +11,11 @@ class Sp4GoodRow(element: WebElement) : AbstractContainer() {
     private val rows: List<WebElement>? = null
 
     fun addOrder(size: String) {
-        self.findElement<WebElement>(By.xpath("//*[@class='sp-good__variant-title sp-good__variant-title-1 ' and  contains(text(), '$size')]/following-sibling::div[@class='sp-good__items']/div[@class='sp-good__item']")).click()
+        self.findElement(By.xpath("//*[@class='sp-good__variant-title sp-good__variant-title-1 ' and  contains(text(), '$size')]/following-sibling::div[@class='sp-good__items']/div[@class='sp-good__item']")).click()
     }
 
     fun checkOrderAdded(size: String, userName: String) : Boolean {
-        val order = self.findElement<WebElement>(By.xpath("//*[@class='sp-good__variant-title sp-good__variant-title-1 ' and  contains(text(), '$size')]/following-sibling::div[@class='sp-good__items']/div[@class='sp-good__item sp-good__item--ordered']/a"))
+        val order = self.findElement(By.xpath("//*[@class='sp-good__variant-title sp-good__variant-title-1 ' and  contains(text(), '$size')]/following-sibling::div[@class='sp-good__items']/div[@class='sp-good__item sp-good__item--ordered']/a"))
         if (order != null) {
             return (order.text == userName)
         }

@@ -40,8 +40,8 @@ class StockAddGoodPage : BasePage() {
     @FindBy(css="#GoodOrgForm_text_label ~ div")
     private val description: TextEditorFrame? = null
 
-    private final var generateBtnSelector = "//a[text() = \"Генерация вариантов\"]"
-    private final var generatePageRoot = ".sp-body.sp-body-good-variant.sp-body-good-variant-generate"
+    private var generateBtnSelector = "//a[text() = \"Генерация вариантов\"]"
+    private var generatePageRoot = ".sp-body.sp-body-good-variant.sp-body-good-variant-generate"
 
     companion object {
         fun open(id: String) {
@@ -69,21 +69,31 @@ class StockAddGoodPage : BasePage() {
         }
     }
 
+    private fun jsAddGood(data: StockGoodData) {
+        stockTitle!!.jsFill(data.title)
+        description!!.enterText(data.description)
+        id!!.jsFill(data.id)
+        price!!.jsFill(data.price)
+        fillCategory(data.category, data.categoryName)
+        status!!.selectByValue(data.status.text)
+        if (addItemLink!!.isEnabled) {
+            uploadFile(data.image)
+        }
+    }
+
     private fun addOptions(data: StockGoodData) {
         Driver.findElement(By.xpath(generateBtnSelector)).click()
         Wait.elementPresence(By.cssSelector(generatePageRoot))
         StockAddGoodOptionsPage().addOptions(data)
-
     }
 
     private fun uploadFile(filePath: String) {
         val resourceDirectory: Path = Paths.get("src", "test", "resources")
         val absolutePath: String = resourceDirectory.toFile().absolutePath
 
-        var jsExecutor = Driver.get() as JavascriptExecutor
-        jsExecutor.executeScript("document.getElementById(\"form-image\").className = \"\"")
-        jsExecutor.executeScript("document.getElementById(\"form-image\").setAttribute(\"data-type\", \"photo\")")
-        jsExecutor.executeScript("document.getElementById(\"form-image\").setAttribute(\"action\", \"https://dev.sp4.sitepokupok.ru/good/image/add?type=photo\")")
+        Driver.executeJS("document.getElementById(\"form-image\").className = \"\"")
+        Driver.executeJS("document.getElementById(\"form-image\").setAttribute(\"data-type\", \"photo\")")
+        Driver.executeJS("document.getElementById(\"form-image\").setAttribute(\"action\", \"https://dev.sp4.sitepokupok.ru/good/image/add?type=photo\")")
         val imageInput = Driver.findElement(By.cssSelector("#image-add"))
         imageInput.sendKeys(absolutePath + filePath)
     }
@@ -98,12 +108,14 @@ class StockAddGoodPage : BasePage() {
     fun fillGoodDataAndConfirm(data: StockGoodData) {
         addGood(data)
         confirmBtn!!.scrollTo()
-        if (Common.isElementBecomeVisible(InfoDialog.body())) {
-            val infoDlg = InfoDialog()
-            if (infoDlg.info() == "Загружено максимальное число изображений этого типа") {
-                infoDlg.submit()
-            }
-        }
+        confirmBtn.click()
+        Wait.elementPresence(By.xpath(generateBtnSelector))
+        addOptions(data)
+    }
+
+    fun jsFillGoodDataAndConfirm(data: StockGoodData) {
+        jsAddGood(data)
+        confirmBtn!!.scrollTo()
         confirmBtn.click()
         Wait.elementPresence(By.xpath(generateBtnSelector))
         addOptions(data)

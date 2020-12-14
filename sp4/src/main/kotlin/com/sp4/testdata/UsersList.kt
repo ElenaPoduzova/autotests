@@ -3,15 +3,36 @@ package com.sp4.testdata
 object UsersList {
     var USER: UserData? = UserData()
         .setValues{ r: UserData ->
-        r.login = "sptest1 "
+        r.login = "sptest1"
+        r.password = "12345"
+        r.name = "sptest1"
+        r.role = UserRoles.USER
+    }
+    var USER2: UserData? = UserData()
+        .setValues{ r: UserData ->
+        r.login = "sptest2"
+        r.password = "12345"
+        r.name = "sptest1"
+        r.role = UserRoles.USER
+    }
+    var USER3: UserData? = UserData()
+        .setValues{ r: UserData ->
+        r.login = "sptest3"
+        r.password = "12345"
+        r.name = "sptest1"
+        r.role = UserRoles.USER
+    }
+    var USER4: UserData? = UserData()
+        .setValues{ r: UserData ->
+        r.login = "sptest4"
         r.password = "12345"
         r.name = "sptest1"
         r.role = UserRoles.USER
     }
     var ADMIN: UserData? = UserData()
         .setValues{ r: UserData ->
-        r.login = "dante23101@yandex.ru"
-        r.password = "123456"
+        r.login = "Sony"
+        r.password = "12345"
         r.name = "dante"
         r.role = UserRoles.ADMIN
     }

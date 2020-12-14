@@ -1,5 +1,6 @@
 package com.sp4.elements
 
+import com.sp4.functions.SharedFunctions
 import com.uitestcore.containers.AbstractContainer
 import com.uitestcore.driverutils.Driver
 import com.uitestcore.driverutils.ExtendedFieldDecorator
@@ -78,5 +79,18 @@ class Header : AbstractContainer() {
 
     fun getWalletCount(): Float {
         return  wallet!!.getValue()
+    }
+
+    fun isLoggedIn() : Boolean {
+        return !SharedFunctions.isElementExists(By.linkText("Войти"))
+    }
+
+    fun logout() {
+        if (this.isLoggedIn()) {
+            user!!.clickMenuButton()
+            user.clickMenuElement("Выйти")
+            Wait.elementVisibility(By.linkText("Войти"))
+        }
+        this.refresh()
     }
 }

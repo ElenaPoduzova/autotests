@@ -33,6 +33,13 @@ class LoginPage : BasePage() {
         PageFactory.initElements(ExtendedFieldDecorator(Driver.get()), this)
     }
 
+    companion object {
+        fun open() {
+            Driver.openPage("/user/login")
+            Wait.elementPresence(By.id("UserLoginForm_login"))
+        }
+    }
+
     fun enterLogin(login : String){
         loginField!!.clearAndType(login)
     }

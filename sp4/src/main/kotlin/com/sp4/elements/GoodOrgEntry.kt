@@ -24,7 +24,7 @@ class GoodOrgEntry : AbstractContainer() {
     private val deleteBtn: Button? = null
 
     companion object {
-        private const val titleSelector = "//a[text() = '%s']/ancestor::tr"
+        private const val titleSelector = "//td[contains(text(), '%s')]/ancestor::tr"
 
         fun getGoodSelectorByTitle(title: String): String {
             return String.format(titleSelector, title)

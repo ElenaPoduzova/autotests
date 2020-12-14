@@ -19,6 +19,8 @@ class StockGood : AbstractContainer() {
     private val image: Sp4ImageGallery? = null
     @FindBy(css = ".sp-card__footer-row.row .price-block")
     private val price: Text? = null
+    @FindBy(css = ".sp-card__footer-row.row .clear-price-block")
+    private val priceWithoutDiscount: Text? = null
     @FindBy(css = ".sp-card__footer-rows.sp-show-rows-wrapper a span")
     private val showRowsBtn: WebElement? = null
     @FindBy(css = ".sp-good__variants.sp-card__footer-variants")
@@ -32,11 +34,18 @@ class StockGood : AbstractContainer() {
         goodRow.addOrder(size)
     }
 
+    fun expandRow() {
+        showRowsBtn!!.click()
+        Wait.elementVisibility(this.findElement(By.cssSelector(".sp-card__footer-good-row-list")))
+    }
+
     fun addOrder(params: HashMap<String, String>) {
         params.forEach {
-            orderParams!!.findElement<WebElement>(By.xpath("//*[@class='sp-good__feature-title sp-card__footer-title' and (contains(text(), '${it.key}'))]/following-sibling::button[@data-feature-value = '${it.value}']")).click()
+            orderParams!!.findElement(By.xpath("//*[@class='sp-good__feature-title sp-card__footer-title' and (contains(text(), '${it.key}'))]/following-sibling::button[@data-feature-value = '${it.value}']")).click()
+            Wait.elementVisibility(this.findElement(By.xpath("//*[@class='sp-good__feature-title sp-card__footer-title' and (contains(text(), '${it.key}'))]/following-sibling::button[@data-feature-value = '${it.value}' and contains(@class, 'available-feature')]")))
         }
         buyBtn!!.click()
+        SpAlerts.waitForOrderAdded()
     }
 
     fun checkOrderAdded(size: String, userName: String) : Boolean {
@@ -48,5 +57,13 @@ class StockGood : AbstractContainer() {
 
     fun getTitle(): String {
         return title!!.text
+    }
+
+    fun getPrice(): Float {
+        return price!!.text().toFloat()
+    }
+
+    fun getPriceWithoutDiscount(): Float {
+        return priceWithoutDiscount!!.toString().toFloat()
     }
 }

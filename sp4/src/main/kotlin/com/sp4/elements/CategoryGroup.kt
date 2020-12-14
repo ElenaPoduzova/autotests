@@ -15,6 +15,6 @@ class CategoryGroup(element: WebElement) : AbstractContainer() {
     private val header: Text? = null
 
     fun selectCategory(categoryName: String) {
-        self.findElement<WebElement>(By.cssSelector("div[class='option'][data-value='$categoryName']"))
+        self.findElement(By.cssSelector("div[class='option'][data-value='$categoryName']"))
     }
 }

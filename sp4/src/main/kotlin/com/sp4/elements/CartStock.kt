@@ -54,6 +54,12 @@ class CartStock : AbstractContainer() {
     fun pay(){
         payBtn!!.click()
         PayDialog.waitToAppear()
+        PayDialog().payAllFromPurse()
+    }
+
+    fun prePay(){
+        payBtn!!.click()
+        PayDialog.waitToAppear()
         PayDialog().prepayFromPurse()
     }
 
@@ -71,19 +77,19 @@ class CartStock : AbstractContainer() {
             throw Exception("Wrong format")
     }
 
-    fun getOrgPay() : Int {
-        return orgPay!!.text().toInt()
+    fun getOrgPay() : Float {
+        return orgPay!!.text().toFloat()
     }
 
-    fun getAllPay() : Int {
-        return finalAmount!!.text().toInt()
+    fun getAllPay() : Float {
+        return finalAmount!!.text().toFloat()
     }
 
-    fun getPaid() : Int {
-        return paidAmount!!.text().toInt()
+    fun getPaid() : Float {
+        return paidAmount!!.text().toFloat()
     }
 
-    fun getNeedToPay() : Int {
-        return toPay!!.text().toInt()
+    fun getNeedToPay() : Float {
+        return toPay!!.text().toFloat()
     }
 }

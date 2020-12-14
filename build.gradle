@@ -23,6 +23,7 @@ allprojects {
 }
 
 dependencies {
+    implementation group: 'com.github.visual-regression-tracker', name: 'sdk-java', version: '4.5.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.seleniumhq.selenium:selenium-java:$seleniumVersion"
     implementation "io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion"

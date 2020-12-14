@@ -30,6 +30,6 @@ class UserButton : AbstractContainer() {
     }
 
     fun clickMenuElement(link : String){
-        (userMenu!!.findElement<WebElement>(By.linkText(link))).click()
+        (userMenu!!.findElement(By.linkText(link))).click()
     }
 }

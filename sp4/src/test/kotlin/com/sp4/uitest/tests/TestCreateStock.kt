@@ -27,13 +27,13 @@ class TestCreateStock : TestInitWithLogin(UsersList.ORG) {
     @Test(priority=2)
     fun createNewGoods() {
         StockManagePage.open()
-        stockManagePage.getStockByTitle(FullStock!!.title).clickGoods().clickCatalogBtn().addGood(StocksGoodList.FisrtGood!!)
+        stockManagePage.getStockByTitle(FullStock!!.title).clickGoods().clickCatalogBtn().addGood(StocksGoodList.BOOTS!!)
         StockManagePage.open()
-        stockManagePage.getStockByTitle(FullStock!!.title).clickGoods().clickCatalogBtn().addGood(StocksGoodList.SecondGood!!)
+        stockManagePage.getStockByTitle(FullStock!!.title).clickGoods().clickCatalogBtn().addGood(StocksGoodList.CARDIGAN!!)
         StockManagePage.open()
-        stockManagePage.getStockByTitle(FullStock!!.title).clickGoods().clickCatalogBtn().addGood(StocksGoodList.ThirdGood!!)
+        stockManagePage.getStockByTitle(FullStock!!.title).clickGoods().clickCatalogBtn().addGood(StocksGoodList.TOP!!)
         StockManagePage.open()
-        stockManagePage.getStockByTitle(FullStock!!.title).clickGoods().clickCatalogBtn().addGood(StocksGoodList.FourthGood!!)
+        stockManagePage.getStockByTitle(FullStock!!.title).clickGoods().clickCatalogBtn().addGood(StocksGoodList.SHIRT!!)
     }
 
     @Test(priority=3)
@@ -41,7 +41,7 @@ class TestCreateStock : TestInitWithLogin(UsersList.ORG) {
         stockManagePage = StockManagePage()
         StockManagePage.open()
         stockManagePage.getStockByTitle(FullStock!!.title).clickGoods().clickCatalogBtn()
-        StockGoodsCatalogPage().addGoodToStock(arrayOf(StocksGoodList.FisrtGood, StocksGoodList.SecondGood, StocksGoodList.ThirdGood, StocksGoodList.FourthGood))
+        StockGoodsCatalogPage().addGoodToStock(arrayOf(StocksGoodList.BOOTS, StocksGoodList.CARDIGAN, StocksGoodList.TOP, StocksGoodList.SHIRT))
     }
 
     @Test(priority=4)

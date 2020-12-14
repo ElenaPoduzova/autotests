@@ -27,6 +27,11 @@ class  StockGoodsCatalogPage : BasePage() {
         StockAddGoodPage().fillGoodDataAndConfirm(data)
     }
 
+    fun jsAddGood(data: StockGoodData) {
+        clickAddGood()
+        StockAddGoodPage().jsFillGoodDataAndConfirm(data)
+    }
+
     fun getGoodByName(title: String): GoodOrgEntry {
         return Driver.findDecoratedElement(GoodOrgEntry::class, By.xpath(GoodOrgEntry.getGoodSelectorByTitle(title))) as GoodOrgEntry
     }

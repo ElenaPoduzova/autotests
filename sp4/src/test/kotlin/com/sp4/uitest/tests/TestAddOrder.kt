@@ -4,7 +4,8 @@ import com.sp4.elements.CartStock
 import com.sp4.elements.Header
 import com.sp4.pages.CartPage
 import com.sp4.pages.StockPage
-import com.sp4.testdata.OrderList.TEST
+import com.sp4.testdata.OrderList.BOOTS
+import com.sp4.testdata.StockViewList.AUTOCREATED
 import com.sp4.testdata.UsersList
 import com.sp4.testdata.UsersList.USER
 import com.sp4.uitest.testutils.TestInitWithLogin
@@ -18,7 +19,7 @@ class TestAddOrder : TestInitWithLogin(UsersList.USER) {
     @Test(priority=1)
     fun openStock() {
         val assert = SoftAssert()
-        StockPage.open(TEST!!.stockId)
+        StockPage.open(AUTOCREATED!!.stockId)
         stockPage = StockPage()
         //need lots of asserts like check elements present
         assert.assertEquals(stockPage.getGoodsCount(), 4)
@@ -29,8 +30,8 @@ class TestAddOrder : TestInitWithLogin(UsersList.USER) {
     @Test(priority=2)
     fun addOrder() {
         val assert = SoftAssert()
-        stockPage.addOrder(TEST!!)
-        assert.assertTrue(stockPage.isOrderAdded(TEST!!, USER!!))
+        stockPage.addOrder(BOOTS!!)
+        assert.assertTrue(stockPage.isOrderAdded(BOOTS!!, USER!!))
         assert.assertAll()
     }
 
@@ -38,18 +39,18 @@ class TestAddOrder : TestInitWithLogin(UsersList.USER) {
     fun checkOrderInCart() {
         val assert = SoftAssert()
         CartPage.open()
-        stockInCart = CartPage().getStockByTitle(TEST!!.stockTitle)
+        stockInCart = CartPage().getStockByTitle(AUTOCREATED!!.stockTitle)
         val orders = stockInCart.getOrders()
         assert.assertTrue(orders.isNotEmpty())
-        assert.assertTrue(orders[0].getTitle() == TEST!!.goodName)
+        assert.assertTrue(orders[0].getTitle() == BOOTS!!.goodName)
         assert.assertTrue(orders[0].getPrice() == 1000)
-        assert.assertTrue(orders[0].getParams() == TEST!!.sizeRow)
+        assert.assertTrue(orders[0].getParams() == BOOTS!!.sizeRow)
         assert.assertTrue(orders[0].getStatus() == "заказан")
         assert.assertTrue(stockInCart.getGoodsCount() == 1)
-        assert.assertTrue(stockInCart.getNeedToPay() == 1050)
-        assert.assertTrue(stockInCart.getAllPay() == 1050)
-        assert.assertTrue(stockInCart.getOrgPay() == 50)
-        assert.assertTrue(stockInCart.getPaid() == 0)
+        assert.assertTrue(stockInCart.getNeedToPay().equals(1050))
+        assert.assertTrue(stockInCart.getAllPay().equals(1050))
+        assert.assertTrue(stockInCart.getOrgPay().equals(50))
+        assert.assertTrue(stockInCart.getPaid().equals(0))
         assert.assertAll()
     }
 
@@ -67,7 +68,7 @@ class TestAddOrder : TestInitWithLogin(UsersList.USER) {
     fun deleteOrderInCart() {
         val assert = SoftAssert()
         CartPage.open()
-        val stock = CartPage().getStockByTitle(TEST!!.stockTitle)
+        val stock = CartPage().getStockByTitle(AUTOCREATED!!.stockTitle)
         val purseCurrent = Header().getWalletCount()
         val orders = stock.getOrders()
         orders[0].deleteOrder()
