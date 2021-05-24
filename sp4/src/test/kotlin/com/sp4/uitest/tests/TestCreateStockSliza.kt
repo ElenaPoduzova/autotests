@@ -10,7 +10,7 @@ import org.junit.Assert
 import org.testng.annotations.Test
 import org.testng.asserts.SoftAssert
 
-class TestCreateStock : TestInitWithLogin(UsersList.ORG) {
+class TestCreateStockSliza : TestInitWithLogin(UsersList.ORG) {
     private var stockId: Pair<Int, String>? = null
 
     @Test(priority=1)

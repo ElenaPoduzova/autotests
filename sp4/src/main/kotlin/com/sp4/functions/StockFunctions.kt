@@ -59,4 +59,11 @@ object StockFunctions {
         stockAdminEditPage.confirm()
     }
 
+    fun setStockStatus(id: Int, status: StockStatus) {
+        StockAdminEditPage.open(id)
+        var stockAdminEditPage = StockAdminEditPage()
+        stockAdminEditPage.setStatus(status)
+        stockAdminEditPage.confirm()
+    }
+
 }

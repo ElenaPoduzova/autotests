@@ -17,9 +17,9 @@ class StockGood : AbstractContainer() {
     private val info: WebElement? = null
     @FindBy(css = ".sp-card__image-wrapper")
     private val image: Sp4ImageGallery? = null
-    @FindBy(css = ".sp-card__footer-row.row .price-block")
+    @FindBy(css = ".sp-card__footer-price-block.sp-price__price-block.price-block")
     private val price: Text? = null
-    @FindBy(css = ".sp-card__footer-row.row .clear-price-block")
+    @FindBy(css = ".sp-card__footer-clear-price-block.sp-price__clear-price-block.clear-price-block")
     private val priceWithoutDiscount: Text? = null
     @FindBy(css = ".sp-card__footer-rows.sp-show-rows-wrapper a span")
     private val showRowsBtn: WebElement? = null
@@ -41,8 +41,8 @@ class StockGood : AbstractContainer() {
 
     fun addOrder(params: HashMap<String, String>) {
         params.forEach {
-            orderParams!!.findElement(By.xpath("//*[@class='sp-good__feature-title sp-card__footer-title' and (contains(text(), '${it.key}'))]/following-sibling::button[@data-feature-value = '${it.value}']")).click()
-            Wait.elementVisibility(this.findElement(By.xpath("//*[@class='sp-good__feature-title sp-card__footer-title' and (contains(text(), '${it.key}'))]/following-sibling::button[@data-feature-value = '${it.value}' and contains(@class, 'available-feature')]")))
+            orderParams!!.findElement(By.xpath("//*[@class='sp-good__feature-title sp-card__footer-title' and (contains(text(), '${it.key}'))]/following-sibling::button[contains(text(),'${it.value}')]")).click()
+            Wait.elementVisibility(this.findElement(By.xpath("//*[@class='sp-good__feature-title sp-card__footer-title' and (contains(text(), '${it.key}'))]/following-sibling::button[contains(text(), '${it.value}') and contains(@class, 'selected-feature')]")))
         }
         buyBtn!!.click()
         SpAlerts.waitForOrderAdded()

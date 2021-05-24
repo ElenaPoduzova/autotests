@@ -37,7 +37,8 @@ class OrgOrderElement : AbstractContainer() {
     private val goodCreateAddBillBtn: WebElement? = null
 
     fun confirmOrder() {
-        btnConfirmOrder!!.click()
+        btnConfirmOrder!!.scrollTo()
+        btnConfirmOrder.click()
     }
 
     fun declineOrder() {

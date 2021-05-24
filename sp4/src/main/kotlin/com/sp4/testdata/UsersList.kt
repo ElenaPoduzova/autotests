@@ -38,7 +38,7 @@ object UsersList {
     }
     var ORG: UserData? = UserData()
         .setValues{ r: UserData ->
-        r.login = "Sony"
+        r.login = "org"
         r.password = "12345"
         r.name = "Sony"
         r.role = UserRoles.ORG

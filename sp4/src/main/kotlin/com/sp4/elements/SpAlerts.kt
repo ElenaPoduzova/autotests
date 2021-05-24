@@ -30,5 +30,9 @@ class SpAlerts : AbstractContainer() {
         fun waitForOrderAdded() {
             Wait.elementPresence(By.xpath("//div[@class='sp-alert__content' and contains(text(),  'Товар заказан')]"))
         }
+
+        fun waitForText(text: String) {
+            Wait.elementPresence(By.xpath("//div[@class='sp-alert__content' and contains(text(),  '$text')]"))
+        }
     }
 }

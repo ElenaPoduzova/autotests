@@ -43,6 +43,7 @@ object StocksList {
     var StockWithPrepayAndDiscount: StockData? = StockData()
         .setValues{ r: StockData ->
             r.title = "Автоматическая закупка " + LocalDate.now() + " " + LocalDateTime.now().hour + " " + LocalDateTime.now().minute
+            //r.title = "Автоматическая закупка " + LocalDate.now() + " " + 21 + " " + 37
             r.supplierId = "35"
             r.offertaId = "1"
             r.annotation = "Краткое описание закупки."

@@ -2,6 +2,7 @@ package com.sp4.pages
 
 import com.sp4.elements.Sp4Selector
 import com.sp4.elements.InfoDialog
+import com.sp4.elements.SpLoader
 import com.sp4.elements.TextEditorFrame
 import com.sp4.testdata.StockGoodData
 import com.uitestcore.driverutils.Common
@@ -107,6 +108,7 @@ class StockAddGoodPage : BasePage() {
 
     fun fillGoodDataAndConfirm(data: StockGoodData) {
         addGood(data)
+        SpLoader.waitWorkedOut()
         confirmBtn!!.scrollTo()
         confirmBtn.click()
         Wait.elementPresence(By.xpath(generateBtnSelector))
@@ -115,6 +117,7 @@ class StockAddGoodPage : BasePage() {
 
     fun jsFillGoodDataAndConfirm(data: StockGoodData) {
         jsAddGood(data)
+        SpLoader.waitWorkedOut()
         confirmBtn!!.scrollTo()
         confirmBtn.click()
         Wait.elementPresence(By.xpath(generateBtnSelector))

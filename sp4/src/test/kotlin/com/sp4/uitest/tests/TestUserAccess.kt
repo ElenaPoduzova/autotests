@@ -2,6 +2,8 @@ package com.sp4.uitest.tests
 
 import com.sp4.elements.Breadcrumbs
 import com.sp4.elements.SpAlerts
+import com.sp4.functions.UserFunctions
+import com.sp4.testdata.UsersList
 import com.sp4.uitest.testutils.TestInit
 import com.uitestcore.driverutils.CookieProfileReader
 import com.uitestcore.driverutils.Driver
@@ -23,8 +25,7 @@ class TestUserAccess : TestInit() {
     @Test(priority=1)
     fun checkUserAccess() {
         Driver.openPage("/stock")
-        Driver.setCookies(CookieProfileReader.readProfile("userprofile"))
-        Driver.reloadPage()
+        UserFunctions.loginAsUser(UsersList.USER!!)
         val assert = SoftAssert()
         userPages.forEach {
             Driver.openPage(it)
@@ -33,25 +34,23 @@ class TestUserAccess : TestInit() {
         }
         orgPages.forEach {
             Driver.openPage(it)
-            Breadcrumbs.waitForAppear()
-            assert.assertEquals(Breadcrumbs().getLastLink(), "Закупки", "У пользователя не должно быть доступа к орговской странице ${it}")
+            //Breadcrumbs.waitForAppear()
+            //assert.assertEquals(Breadcrumbs().getLastLink(), "Закупки", "У пользователя не должно быть доступа к орговской странице ${it}")
+            SpAlerts.waitForNoAccessAlert()
             assert.assertTrue(SpAlerts.isNoAccessAlertDisplayed(), "Пользователь должен увидеть сообщение об отсутвии доступа к странице /${it}")
         }
         adminPages.forEach {
             Driver.openPage(it)
-            Breadcrumbs.waitForAppear()
-            assert.assertEquals(Breadcrumbs().getLastLink(), "Закупки", "У пользователя не должно быть доступа к админской странице ${it}")
+            SpAlerts.waitForNoAccessAlert()
             assert.assertTrue(SpAlerts.isNoAccessAlertDisplayed(), "Пользователь должен увидеть сообщение об отсутвии доступа к странице /${it}")
         }
         assert.assertAll()
-        Driver.deleteCookies()
     }
 
     @Test(priority=2)
     fun checkOrgAccess() {
         Driver.openPage("/stock")
-        Driver.deleteCookies()
-        Driver.setCookies(CookieProfileReader.readProfile("orgprofile"))
+        UserFunctions.loginAsUser(UsersList.ORG!!)
         Driver.reloadPage()
         val assert = SoftAssert()
         userPages.forEach {
@@ -66,20 +65,16 @@ class TestUserAccess : TestInit() {
         }
         adminPages.forEach {
             Driver.openPage(it)
-            Breadcrumbs.waitForAppear()
-            assert.assertEquals(Breadcrumbs().getLastLink(), "Закупки", "У орга не должно быть доступа к админской странице /${it}")
+            SpAlerts.waitForNoAccessAlert()
             assert.assertTrue(SpAlerts.isNoAccessAlertDisplayed(), "Орг должен увидеть сообщение об отсутвии доступа к странице /${it}")
         }
         assert.assertAll()
-        Driver.deleteCookies()
     }
 
     @Test(priority=3)
     fun checkAdminAccess() {
         Driver.openPage("/stock")
-        Driver.deleteCookies()
-        Driver.setCookies(CookieProfileReader.readProfile("adminprofile"))
-        Driver.reloadPage()
+        UserFunctions.loginAsUser(UsersList.ADMIN!!)
         val assert = SoftAssert()
         userPages.forEach {
             Driver.openPage(it)
@@ -97,6 +92,5 @@ class TestUserAccess : TestInit() {
             assert.assertTrue(Driver.get().currentUrl.contains(it), "У админа должен быть доступ к админской странице /${it}")
         }
         assert.assertAll()
-        Driver.deleteCookies()
     }
 }

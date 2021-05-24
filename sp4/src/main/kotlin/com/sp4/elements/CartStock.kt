@@ -1,11 +1,14 @@
 package com.sp4.elements
 
 import com.uitestcore.containers.AbstractContainer
+import com.uitestcore.driverutils.Driver
+import com.uitestcore.driverutils.ExtendedFieldDecorator
 import com.uitestcore.elementobjects.Button
 import com.uitestcore.elementobjects.Link
 import com.uitestcore.elementobjects.Text
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
+import org.openqa.selenium.support.PageFactory
 
 class CartStock : AbstractContainer() {
     @FindBy(css="a.sp-cart__org-link.sp-link.sp-link--dotted")
@@ -24,6 +27,8 @@ class CartStock : AbstractContainer() {
     private val discount: Text? = null
     @FindBy(css=".sp-cart__footer .sp-cart__delivery-key.sp-cart__footer-item")
     private val deliveryOffice: Text? = null
+    @FindBy(css=".sp-cart__delivery-address.sp-cart__footer-item")
+    private val deliveryOfficeFull: Text? = null
     @FindBy(css=".sp-cart__footer .sp-cart__delivery-alias.sp-cart__footer-item")
     private val receiveCode: Text? = null
     @FindBy(css=".sp-cart__footer .sp-cart__total-amount-value.sp-cart__pay-info-value.sp-cart__footer-item")
@@ -38,14 +43,18 @@ class CartStock : AbstractContainer() {
     private val historyLink: Link? = null
     @FindBy(css=".sp-cart__org-message-text")
     private val description: Text? = null
-    @FindBy(css=".sp-cart__order.sp-cart__order--new")
+    @FindBy(css="div[class*='sp-cart__order sp-cart__order--']")
     private val ordersList: List<CartOrder>? = null
     @FindBy(css=".sp-cart__toggle")
     private val toggleBtn: Button? = null
     @FindBy(css=".sp-cart__stop-time.sp-cart__footer-item")
     private val payBefore: Text? = null
-    @FindBy(css="a[class*='action-cart-office-select']")
-    private val changeDelivery: Link? = null
+    @FindBy(css="a.action-cart-office-select")
+    private val changeDelivery: Button? = null
+
+    fun reload() {
+        PageFactory.initElements(ExtendedFieldDecorator(Driver.get()), this)
+    }
 
     fun getOrders() : List<CartOrder> {
         return this.ordersList!!
@@ -61,6 +70,12 @@ class CartStock : AbstractContainer() {
         payBtn!!.click()
         PayDialog.waitToAppear()
         PayDialog().prepayFromPurse()
+    }
+
+    fun selectPickupOffice(office: String) {
+        changeDelivery!!.click()
+        SelectDeliveryOfficeDialog.waitToAppear()
+        SelectDeliveryOfficeDialog().selectPickup(office)
     }
 
     fun payByCard()
@@ -91,5 +106,13 @@ class CartStock : AbstractContainer() {
 
     fun getNeedToPay() : Float {
         return toPay!!.text().toFloat()
+    }
+
+    fun getStatus(): String {
+        return statusBtn!!.text
+    }
+
+    fun getOffice(): Pair<String, String> {
+        return Pair(deliveryOffice!!.text(), deliveryOfficeFull!!.text())
     }
 }

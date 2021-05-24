@@ -56,6 +56,6 @@ class LoginPage : BasePage() {
         loginField!!.clearAndType(userData!!.login)
         passwordField!!.clearAndType(userData.password)
         submitButton!!.click()
-        Wait.elementPresence(By.xpath("//span/span[@class='sp-user ' and contains(text(), '${userData!!.login}')]"))
+        Wait.elementPresence(By.xpath("//span[@id='sp-user-menu-dropdown']/span[@class='sp-user-login ' and contains(text(), '${userData!!.login}')]"))
     }
 }

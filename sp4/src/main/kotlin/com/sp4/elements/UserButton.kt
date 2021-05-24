@@ -11,7 +11,7 @@ class UserButton : AbstractContainer() {
     @FindBy(css = ".sp-avatar")
     private val avatar: WebElement? = null
 
-    @FindBy(css = "#sp-user-menu-dropdown > .sp-user")
+    @FindBy(css = "#sp-user-menu-dropdown")
     private val menuButton: Button? = null
 
     @FindBy(css = ".show:nth-child(3)")

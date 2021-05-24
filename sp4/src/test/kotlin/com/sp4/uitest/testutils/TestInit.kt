@@ -12,8 +12,7 @@ open class TestInit {
     @Throws(Exception::class)
     open fun beforeClass() {
         Driver.init()
-        //Driver.maximize()
-        Driver.get().manage().window().size = Dimension(1440, 900);
+        Driver.get().manage().window().size = Dimension(1440, 900)
     }
 
     @AfterTest

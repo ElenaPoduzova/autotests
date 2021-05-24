@@ -61,8 +61,8 @@ class Header : AbstractContainer() {
     }
 
     fun loginIs(userData: UserData) : Boolean {
-        Wait.elementPresence(By.cssSelector("span.sp-user"))
-        var element = Driver.findElement(By.cssSelector("span.sp-user"))
+        Wait.elementPresence(By.cssSelector("#sp-user-menu-dropdown span.sp-user-login"))
+        var element = Driver.findElement(By.cssSelector("#sp-user-menu-dropdown span.sp-user-login"))
         return element.text == userData.name
     }
 

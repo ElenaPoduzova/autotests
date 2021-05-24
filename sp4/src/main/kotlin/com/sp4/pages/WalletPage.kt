@@ -25,6 +25,9 @@ class WalletPage : BasePage() {
     @FindBy(css="#PurseRechargeForm button")
     val submit: Button? = null
 
+    @FindBy(css=".sp-purse__payment-systems-items div[data-payment-system-unit-id='43674']")
+    val selectVisa: Button? = null
+
     fun open() {
         Driver.openPage("/purse")
     }
@@ -40,6 +43,7 @@ class WalletPage : BasePage() {
     fun addMoney(amount: Int) {
         balanceField!!.clearAndType(amount.toString())
         submit!!.click()
+        selectVisa!!.click()
         val cardForm = MonetaPayForm()
         cardForm.enterCardDataAndAccept(CORRECTCARD!!)
     }

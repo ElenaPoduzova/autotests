@@ -4,7 +4,9 @@ import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.httpPost
 import com.sp4.elements.Header
 import com.sp4.pages.LoginPage
+import com.sp4.pages.WalletPage
 import com.sp4.testdata.UserData
+import java.sql.Driver
 
 object UserFunctions {
 
@@ -37,10 +39,25 @@ object UserFunctions {
 
     fun loginIfUnauthorized(profile: UserData) {
         val header = Header()
-        if (header.isLoggedIn()) {
+        if (header.isLoggedIn() && header.loginIs(profile)) {
             return
         } else {
             loginAsUser(profile)
+        }
+    }
+
+    fun addMoney(count: Int) {
+        com.uitestcore.driverutils.Driver.openPage("purse")
+        val walletPage = WalletPage()
+        walletPage.addMoney(count)
+    }
+
+    fun addMoneyToCount(balance: Int) {
+        com.uitestcore.driverutils.Driver.openPage("purse")
+        val walletPage = WalletPage()
+        val count = balance - walletPage.getBalance()
+        if (count >= 1) {
+            walletPage.addMoney(count.toInt())
         }
     }
 
