@@ -19,7 +19,7 @@ class StockPage : BasePage() {
     private val org: WebElement? = null
     @FindBy(css=".sp-author__message")
     private val authorMessage: WebElement? = null
-    @FindBy(css=".sp-stock-status__value")
+    @FindBy(css=".sp-status__value")
     private val status: WebElement? = null
     @FindBy(css=".sp-sale-page__stock-info-discount-value")
     private val discount: WebElement? = null

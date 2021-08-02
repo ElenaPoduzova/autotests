@@ -21,7 +21,7 @@ class InfoDialog : AbstractContainer() {
     @FindBy(css = ".modal-body")
     private val info: WebElement? = null
 
-    @FindBy(css = ".confirm")
+    @FindBy(css = "button[type='button'][data-dismiss='modal']")
     private val submitButton: Button? = null
     @FindBy(css = ".cancel")
     private val declineButton: Button? = null

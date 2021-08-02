@@ -20,11 +20,8 @@ class MonetaPayForm : AbstractContainer() {
     @FindBy(id="additionalParameters_cardCVV2")
     private val cvvNumber: TextField? = null
 
-    @FindBy(id="cardExpirationMonth")
-    private val expireMonth: Select? = null
-
-    @FindBy(id="cardExpirationYear")
-    private val expireYear: Select? = null
+    @FindBy(id="additionalParameters_cardExpiration")
+    private val expireDate: TextField? = null
 
     @FindBy(css="form .form_row.form_row_total")
     private val totalCountText: WebElement? = null
@@ -42,8 +39,7 @@ class MonetaPayForm : AbstractContainer() {
     fun enterCardDataAndAccept(card: CardData){
         frontNumber!!.clearAndType(card.number)
         cvvNumber!!.clearAndType(card.cvv)
-        expireMonth!!.selectByValue(card.expireMonth)
-        expireYear!!.selectByValue(card.expireYear)
+        expireDate!!.clearAndType(card.expireDate)
         Driver.scrollToElement(Driver.getElementByName("_do_next"))
         payBtn!!.click()
     }

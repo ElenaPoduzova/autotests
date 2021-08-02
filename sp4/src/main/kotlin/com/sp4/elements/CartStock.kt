@@ -15,7 +15,7 @@ class CartStock : AbstractContainer() {
     private val org: Link? = null
     @FindBy(css="a.sp-cart__title-link sp-link")
     private val title: WebElement? = null
-    @FindBy(css=".sp-stock-status__value")
+    @FindBy(css=".sp-cart__stock-status")
     private val statusBtn: WebElement? = null
     @FindBy(css=".sp-cart__footer div div")
     private val goodsCount : Text? = null

@@ -46,5 +46,6 @@ class WalletPage : BasePage() {
         selectVisa!!.click()
         val cardForm = MonetaPayForm()
         cardForm.enterCardDataAndAccept(CORRECTCARD!!)
+        Driver.get().switchTo().parentFrame()
     }
 }

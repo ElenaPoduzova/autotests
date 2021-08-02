@@ -74,8 +74,8 @@ class TestCheckStock : TestInit() {
         assert.assertEquals(orders[1].getParams(), OrderList.BOOTS!!.sizeRow, "Параметры должны быть теми с которыми был добавлен товар")
         assert.assertEquals(orders[1].getStatus(), "заказан")
         assert.assertEquals(stockInCart.getGoodsCount(), 2, "Всего товаров в заказе")
-        assert.assertEquals(stockInCart.getNeedToPay(), 1417.5f, "К оплате: ")
-        assert.assertEquals(stockInCart.getAllPay(), 1417.50f, "Сумма заказа: ")
+        assert.assertEquals(stockInCart.getNeedToPay(), 135.0f, "К оплате: ")
+        assert.assertEquals(stockInCart.getAllPay(), 1417.5f, "Сумма заказа: ")
         assert.assertEquals(stockInCart.getOrgPay(), 67.5f, "Оргсбор: ")
         assert.assertEquals(stockInCart.getPaid(), 0.0f, "Оплачено: ")
         assert.assertAll()
@@ -193,7 +193,7 @@ class TestCheckStock : TestInit() {
 
         StockFunctions.setStockStatus(stockId!!.first, StockStatus.STOP)
         StockPage.open(stockId!!.second)
-        assert.assertEquals(StockPage().getStatus(), StockStatus.STOP.text, "На странице закупки статус стоп")
+        assert.assertTrue(StockPage().getStatus().contains(StockStatus.STOP.text), "На странице закупки статус стоп")
 
         UserFunctions.loginIfUnauthorized(UsersList.USER!!)
         CartPage.open()
@@ -201,12 +201,12 @@ class TestCheckStock : TestInit() {
         var stockInCart = CartPage().getStockByTitle(StockWithPrepayAndDiscount!!.title)
         val orders = stockInCart.getOrders()
 
-        assert.assertEquals(stockInCart.getStatus(), StockStatus.STOP.text, "Закупка в стопе")
+        assert.assertTrue(stockInCart.getStatus().contains(StockStatus.STOP.text), "Закупка в стопе")
         assert.assertEquals(stockInCart.getAllPay(), 472.5f, "Осталось к оплате - 472.5")
         assert.assertEquals(orders[0].getStatus(), "подтверждён", "Кардиган подтвержден")
         assert.assertEquals(orders[1].getStatus(), "нет в наличии", "Кардиган подтвержден")
         assert.assertEquals(stockInCart.getGoodsCount(), 1, "Всего товаров в заказе")
-        assert.assertEquals(stockInCart.getNeedToPay(), 337.50f, "К оплате: ")
+        assert.assertEquals(stockInCart.getNeedToPay(), 0.0f, "К оплате: ")
         assert.assertEquals(stockInCart.getAllPay(), 472.50f, "Сумма заказа: ")
         assert.assertEquals(stockInCart.getOrgPay(), 22.50f, "Оргсбор: ")
         assert.assertEquals(stockInCart.getPaid(), 135.0f, "Оплачено: ")
@@ -214,7 +214,7 @@ class TestCheckStock : TestInit() {
         val purseCurrent = Header().getWalletCount()
         stockInCart.pay()
         Driver.pause(5)
-        assert.assertEquals(Header().getWalletCount(), purseCurrent - 337.50f)
+        assert.assertEquals(Header().getWalletCount(), purseCurrent - 427.50f)
 
         assert.assertAll()
     }
@@ -226,7 +226,7 @@ class TestCheckStock : TestInit() {
         UserFunctions.loginIfUnauthorized(UsersList.ADMIN!!)
         StockFunctions.setStockStatus(stockId!!.first, StockStatus.STOP)
         StockPage.open(stockId!!.second)
-        assert.assertEquals(StockPage().getStatus(), StockStatus.STOP.text)
+        assert.assertTrue(StockPage().getStatus().contains(StockStatus.STOP.text))
 
         StockFunctions.setStockStatus(stockId!!.first, StockStatus.CHECK)
         StockPage.open(stockId!!.second)
@@ -261,8 +261,8 @@ class TestCheckStock : TestInit() {
         var stockInCart = CartPage().getStockByTitle(StockWithPrepayAndDiscount!!.title)
         stockInCart.selectPickupOffice("Зарубина, 44, г. Йошкар-Ола, ул. Зарубина, 44")
         stockInCart.reload()
-        assert.assertEquals(stockInCart.getOffice().first, "Зарубина, 44 изменить")
-        assert.assertEquals(stockInCart.getOffice().second, "г. Йошкар-Ола, ул. Зарубина, 44")
+        assert.assertEquals(stockInCart.getOffice().first, "Зарубина, 44 изменить отменить")
+        assert.assertTrue(stockInCart.getOffice().second.contains( "г. Йошкар-Ола, ул. Зарубина, 44"))
 
         UserFunctions.loginIfUnauthorized(UsersList.USER2!!)
         CartPage.open()
@@ -270,8 +270,8 @@ class TestCheckStock : TestInit() {
         var stockInCart2 = CartPage().getStockByTitle(StockWithPrepayAndDiscount!!.title)
         stockInCart2.selectPickupOffice("Йошкар-Ола Строителей_1218_С, 424007, Йошкар-Ола г, Строителей ул, д.44")
         stockInCart2.reload()
-        assert.assertEquals(stockInCart2.getOffice().first, "Йошкар-Ола Строителей_1218_С (boxberry) изменить")
-        assert.assertEquals(stockInCart2.getOffice().second, "424007, Йошкар-Ола г, Строителей ул, д.44")
+        assert.assertEquals(stockInCart2.getOffice().first, "Йошкар-Ола Строителей_1218_С (boxberry) изменить отменить")
+        assert.assertTrue(stockInCart2.getOffice().second.contains( "424007, Йошкар-Ола г, Строителей ул, д.44"))
 
         UserFunctions.loginIfUnauthorized(UsersList.USER3!!)
         CartPage.open()
@@ -279,8 +279,8 @@ class TestCheckStock : TestInit() {
         var stockInCart3 = CartPage().getStockByTitle(StockWithPrepayAndDiscount!!.title)
         stockInCart3.selectPickupOffice("Комсомольская, 110, г. Йошкар-Ола, ул. Комсомольская, 110")
         stockInCart3.reload()
-        assert.assertEquals(stockInCart3.getOffice().first, "Комсомольская, 110 изменить")
-        assert.assertEquals(stockInCart3.getOffice().second, "г. Йошкар-Ола, ул. Комсомольская, 110")
+        assert.assertEquals(stockInCart3.getOffice().first, "Комсомольская, 110 изменить отменить")
+        assert.assertTrue(stockInCart3.getOffice().second.contains( "г. Йошкар-Ола, ул. Комсомольская, 110"))
 
         assert.assertAll()
     }

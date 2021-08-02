@@ -12,21 +12,21 @@ object UsersList {
         .setValues{ r: UserData ->
         r.login = "sptest2"
         r.password = "12345"
-        r.name = "sptest1"
+        r.name = "sptest2"
         r.role = UserRoles.USER
     }
     var USER3: UserData? = UserData()
         .setValues{ r: UserData ->
         r.login = "sptest3"
         r.password = "12345"
-        r.name = "sptest1"
+        r.name = "sptest3"
         r.role = UserRoles.USER
     }
     var USER4: UserData? = UserData()
         .setValues{ r: UserData ->
         r.login = "sptest4"
         r.password = "12345"
-        r.name = "sptest1"
+        r.name = "sptest4"
         r.role = UserRoles.USER
     }
     var ADMIN: UserData? = UserData()
